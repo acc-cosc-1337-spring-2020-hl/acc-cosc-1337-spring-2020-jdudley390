@@ -12,7 +12,7 @@ int main()
 
 	cout << num;
 
-	int num1 = square_number(5);
+	int num1 = square_number(5); //local variable
 	
 	return 0;
 }
