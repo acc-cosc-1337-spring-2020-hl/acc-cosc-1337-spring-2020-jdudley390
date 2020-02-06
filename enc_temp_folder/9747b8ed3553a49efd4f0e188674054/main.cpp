@@ -30,7 +30,7 @@ int main()
 	gross_salary = gross_pay(hours, hourly_rate);
 	//Display the gross_salary variable as follows:
 	//Example ---->>>     Gross pay: 150.00   
-	cout << "Gross pay: " << gross_salary;
+	cout << "Gross pay" << gross_salary;
 
 
 
