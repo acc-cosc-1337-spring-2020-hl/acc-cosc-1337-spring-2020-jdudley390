@@ -7,5 +7,8 @@ TEST_CASE("Verify Test Configuration", "verification") {
 }
 TEST_CASE("Test Hourly wage")
 {
-	REQUIRE(grosspay(40, 10) == 400;
+	REQUIRE(gross_pay(10, 15) == 150);
+	REQUIRE(gross_pay(5, 20) == 100);
+	REQUIRE(gross_pay(20, 10) == 200);
+	REQUIRE(gross_pay(50, 10) == 550);
 }
