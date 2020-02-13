@@ -11,6 +11,10 @@
 //another other value return -1
 int get_grade_points(std::string letter_grade)
 {
+	str letter_grade;
+
+	cout << "What was the students letter grade? ";
+	cin >> letter_grade;
 	if (letter_grade == "A") 
 	{
 		return 4;
