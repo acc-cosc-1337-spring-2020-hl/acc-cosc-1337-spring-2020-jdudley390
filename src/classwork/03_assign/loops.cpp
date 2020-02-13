@@ -16,13 +16,13 @@ DON'T FORGET TO WRITE TEST CASE.  See file loop_test.cpp
 int factorial(int num)
 {
 	
-	int sum = 0;
+	int sum = 1;
 	int count = 1;
 	
 
-	while (count <= num);
+	while (count <= num)
 	{
-		sum = sum + (count * count);
+		sum = sum * count;
 		count = count + 1;
 	}
 	return sum;
