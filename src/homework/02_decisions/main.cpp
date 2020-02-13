@@ -41,7 +41,7 @@ int main()
 	cout << "Enter credit hours: ";
 	cin >> credit_hours;
 	sum_credit_points += get_grade_points(letter_grade)  * credit_hours;
-	sum_credit_hours += credit_hours;
+	sum_credit_hours += credit_hours; 
 
 	cout << "Enter letter grade: ";
 	cin >> letter_grade;
