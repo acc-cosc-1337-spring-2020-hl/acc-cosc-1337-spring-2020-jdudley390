@@ -1,5 +1,7 @@
 #include "loops.h"
-using std::cout;
+#include<iostream>
+
+using std::cout; using std::cin;
 
 //write using statements for cin and cout
 
@@ -11,8 +13,19 @@ factorial.  Also, loop continues as long as user wants to.
 */
 int main() 
 {
-	int sum = factorial(5);
-	cout << "Number is: " << sum;
+	int num, choice;
+	
+	do
+	{
+		cout << "Enter number: ";
+		cin >> num;
+
+		int sum = factorial(num);
+		cout << "Number is: " << sum;
+		cout << "Enter 1 to continue...";
+		cin >> choice;
+
+	} while (choice == 1);
 
 	return 0;
 }

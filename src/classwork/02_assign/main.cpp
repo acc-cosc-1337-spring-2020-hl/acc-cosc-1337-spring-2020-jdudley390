@@ -1,3 +1,4 @@
+
 //Write the include statement for decisions.h here
 #include<iostream>
 #include "decision.h"
@@ -17,9 +18,9 @@ int main()
 	double hourly_rate;
 
 	//Prompt user for keyboard input for hours and hourly_rate
-	cout << "Enter your hours worked";
+	cout << "Enter your hours worked:";
 	cin >> hours;
-	cout << "Enter your hourly wage";
+	cout << "Enter your hourly wage:";
 	cin >> hourly_rate;
 	//save the input to variables hours and hourly_rate
 	
