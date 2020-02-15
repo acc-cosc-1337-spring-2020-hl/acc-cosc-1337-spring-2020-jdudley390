@@ -11,10 +11,6 @@
 //another other value return -1
 int get_grade_points(std::string letter_grade)
 {
-	str letter_grade;
-
-	cout << "What was the students letter grade? ";
-	cin >> letter_grade;
 	if (letter_grade == "A") 
 	{
 		return 4;
@@ -47,7 +43,7 @@ int get_grade_points(std::string letter_grade)
 //credit_hours. In the function account for division by zero by returning a -1.
 double calculate_gpa(int credit_hours, double credit_points)
 {
-	if (double credit_points != 0)
+	if (credit_hours != 0)
 	{
 		return credit_points / credit_hours;
 	}
