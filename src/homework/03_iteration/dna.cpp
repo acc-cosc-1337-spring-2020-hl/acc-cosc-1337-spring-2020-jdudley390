@@ -19,7 +19,6 @@ double get_gc_content(const string gc)
 	cin >> gc;
 	//create loops to get count of letters g and c
 	for (int i = 0; int < gc.size(); i++)
-	for (int i = 0; int < gc.size(); i++)
 	{
 		if (gc.at(i) == 'G'  || 'C');
 			count++;
