@@ -6,16 +6,13 @@ using std::string;
 Write prototype for function get_gc_content that accepts
 a const reference string parameter and returns a double
 */
-double string get_gc_content(const string& dna);
-
-
+double get_gc_content(const string gc);
 
 /*
-Write prototype for function get_reverse_string that 
+Write prototype for function get_reverse_string that
 accepts a string parameter and returns a string
 */
-string get_reverse_string(string dna);
-
+string get_reverse_string(string reverse);
 
 /*
 Write prototype for function get_dna_complement that
