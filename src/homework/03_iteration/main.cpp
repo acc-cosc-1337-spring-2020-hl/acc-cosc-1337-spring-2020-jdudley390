@@ -12,5 +12,9 @@ user enters a y or Y.
 */
 int main() 
 {
+	//AGCTATAG
+	//CGCTATAG
+
+	get_gc_content(gc{ AGCTATAG });
 	return 0;
 }

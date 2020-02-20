@@ -12,13 +12,13 @@ Return quotient.
 double get_gc_content(const string gc)
 {
 	//start counter and create gc string variable
+	double percent;
 	double count = 0.0;
 	string gc;
 	//Have a user put in 8 letters made up of actg
-	cout << "Enter 8 characters made up of letters actg";
-	cin >> gc;
+	
 	//create loops to get count of letters g and c
-	for (int i = 0; int < gc.size(); i++)
+	for (double i = 0; i < gc.size(); i++)
 	{
 		if (gc.at(i) == 'G'  || 'C');
 			count++;
@@ -43,6 +43,8 @@ string get_reverse_string(string reverse)
 }
 
 
+
+
 /*
 Write prototype for function get_dna_complement that
 accepts a string dna and returns a string.
@@ -53,5 +55,8 @@ b. iterate local string variable and
 c. return string
 
 */
-
+string get_dna_complement(string dna)
+{
+	return string();
+}
 
