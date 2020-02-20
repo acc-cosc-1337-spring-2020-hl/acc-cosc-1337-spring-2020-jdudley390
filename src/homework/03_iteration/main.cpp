@@ -1,5 +1,6 @@
 //write include statements
 #include "dna.h"
+#include<iostream>
 
 //write using statements
 
@@ -10,12 +11,13 @@ or 2 for Get DNA Complement.  The program will prompt user for a
 DNA string and call either get gc content or get dna complement
 function and display the result. Program runs as long as 
 user enters a y or Y.
-*/
+*/ 
 int main() 
 {
-	//AGCTATAG
-	//CGCTATAG
-
-	get_gc_content(AGCTATAG);
+	
+	get_gc_content("AGCTATAG");
+	std::string rev("Reverse std::string");
+	rev = get_reverse_string(rev);
+	cout << rev;
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include "dna.h"
 using std::size;
 
+
 /*
 Write code for function get_gc_content that accepts
 a const reference string parameter and returns a double.
@@ -40,8 +41,13 @@ accepts a string parameter and returns a string reversed.
 string get_reverse_string(string dna)
 {
 
-
+	string reverse;
+	for (int i = dna.size() - 1; i >= 0; i--)
+	{
+		reverse = reverse.append(1, dna[i]);
+	
 	return string();
+	}
 }
 
 
@@ -59,6 +65,32 @@ c. return string
 */
 string get_dna_complement(string dna)
 {
+	get_reverse_string(dna);
+	string reg = dna;
+	for (double i = 0; i < dna.size(); i++)
+	{
+		if (dna[i] == 'G')
+		{
+			i == 'C';
+		}
+	
+		else if (dna[i] == 'C')
+		{
+			i == 'G';
+		}
+		else if (dna[i] == 'A')
+		{
+			i == 'T';
+		}
+		else if (dna[i] = 'T')
+		{
+			i == 'A';
+		}
+		else
+		{
+			cout << "invalid";
+		}
+
 	return string();
 }
 
