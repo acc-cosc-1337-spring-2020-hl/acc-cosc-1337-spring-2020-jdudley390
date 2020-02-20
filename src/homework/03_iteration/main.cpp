@@ -1,4 +1,5 @@
 //write include statements
+#include "dna.h"
 
 //write using statements
 
@@ -15,6 +16,6 @@ int main()
 	//AGCTATAG
 	//CGCTATAG
 
-	get_gc_content(gc{ AGCTATAG });
+	get_gc_content(AGCTATAG);
 	return 0;
 }

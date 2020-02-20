@@ -1,5 +1,6 @@
 #include "dna.h"
-#include<bits/rdc++.h>
+using std::size;
+
 /*
 Write code for function get_gc_content that accepts
 a const reference string parameter and returns a double.
@@ -8,21 +9,21 @@ Iterate string count Gs and Cs, divide count by string length.
 Return quotient.
 */
 
-double get_gc_content(const string dna)
+double get_gc_content(const string& dna)
 {
 	//start counter and create gc string variable
 	double percent;
 	double count = 0.0;
-	string dna;
+	
 	//Have a user put in 8 letters made up of actg
 	
 	//create loops to get count of letters g and c
 	for (double i = 0; i < dna.size(); i++)
 	{
-		if (dna.at(i) == 'G'  || 'C');
+		if (dna[i] == 'G'  || 'C')
 			count++;
 	}
-	double percent = count / gc.size();
+	percent = count / dna.size();
 		cout << percent;
 		return 0.0;
 }
