@@ -1,18 +1,20 @@
 #include<string>
 #include<iostream>
 using std::string;
+using std::cout;
+
 
 /*
 Write prototype for function get_gc_content that accepts
 a const reference string parameter and returns a double
 */
-double get_gc_content(const string gc);
+double get_gc_content(const string dna);
 
 /*
 Write prototype for function get_reverse_string that
 accepts a string parameter and returns a string
 */
-string get_reverse_string(string reverse);
+string get_reverse_string(string dna);
 
 /*
 Write prototype for function get_dna_complement that

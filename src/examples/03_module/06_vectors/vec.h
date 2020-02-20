@@ -1,6 +1,8 @@
 #include<string>
+#include<iostream>
 #include<vector>
 using std::vector;
+using std::cout;
 
 /*
 Write function prototype for function loop_vector_w_index with no parameters.

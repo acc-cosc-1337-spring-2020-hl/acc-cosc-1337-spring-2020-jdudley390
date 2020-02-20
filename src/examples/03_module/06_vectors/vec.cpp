@@ -4,6 +4,7 @@
 #include "vec.h"
 
 using std::vector;
+using std::cout;
 
 /*
 Write code for function loop_vector_w_index with no parameters.
