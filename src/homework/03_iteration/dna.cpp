@@ -21,12 +21,11 @@ double get_gc_content(const string& dna)
 	//create loops to get count of letters g and c
 	for (double i = 0; i < dna.size(); i++)
 	{
-		if (dna[i] == 'G'  || 'C')
+		if (dna[i] == 'G'  || dna[i] == 'C')
 			count++;
 	}
 	percent = count / dna.size();
-		cout << percent;
-		return 0.0;
+	return percent;
 }
 
 
@@ -46,8 +45,10 @@ string get_reverse_string(string dna)
 	{
 		reverse = reverse.append(1, dna[i]);
 	
-	return string();
+	
 	}
+
+	return reverse;
 }
 
 
@@ -65,32 +66,29 @@ c. return string
 */
 string get_dna_complement(string dna)
 {
-	get_reverse_string(dna);
-	string reg = dna;
-	for (double i = 0; i < dna.size(); i++)
-	{
-		if (dna[i] == 'G')
-		{
-			i == 'C';
-		}
+	string reg = get_reverse_string(dna);
 	
-		else if (dna[i] == 'C')
+	for (double i = 0; i < reg.size(); i++)
+	{
+		if (reg[i] == 'G')
 		{
-			i == 'G';
-		}
-		else if (dna[i] == 'A')
-		{
-			i == 'T';
-		}
-		else if (dna[i] = 'T')
-		{
-			i == 'A';
-		}
-		else
-		{
-			cout << "invalid";
+			reg[i] = 'C';
 		}
 
-	return string();
+		else if (reg[i] == 'C')
+		{
+			reg[i] = 'G';
+		}
+		else if (reg[i] == 'A')
+		{
+			reg[i] = 'T';
+		}
+		else if (reg[i] = 'T')
+		{
+			reg[i] = 'A';
+		}
+	}
+
+	return reg;
 }
 
