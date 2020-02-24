@@ -25,7 +25,7 @@ void loop_vector_w_index(vector<int> nums)
 
 
 /*
-Write code for function loop_vector_w_index with a vector of int pass by value parameter.
+Write code for function loop_vector_w_index with a vecto of int pass by value parameter.
 The function creates an int vector with values 9, 10, 99, 5, 67
 and displays the numbers to screen using an indexed for loop as follows: 9 10 99 5  67
 */
