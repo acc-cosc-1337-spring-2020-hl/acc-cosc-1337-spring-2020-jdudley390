@@ -36,6 +36,7 @@ bool is_prime(int nums)
 	}
 	else
 		return "true";
+		cout << "true";
 }
 	
 /*
