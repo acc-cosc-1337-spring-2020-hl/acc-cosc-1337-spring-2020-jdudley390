@@ -8,10 +8,15 @@ vector of intsparameter that returns the max value in a vector
 */
 int get_max_from_vector(const vector<int>& nums)
 {
+	int max = nums[0];
 	for (int i = 0; i < nums.size(); i++)
-		cout << nums[i];
-		cout << "\n Max value in vector: ";
-		cout << *max_element(nums.begin(), nums.end());
+	{
+		if (nums[i] > max)
+		{
+			max = nums[i];
+			cout << max;
+		}
+	}
 	return 0;
 }
 
@@ -23,7 +28,16 @@ given a number returns true if prime or false if not prime
 @param number: Any whole number
 @return: bool if prime False if not
 */
-
+bool is_prime(int nums)
+{
+	if (nums % 2 != 0)
+	{
+		return "false";
+	}
+	else
+		return "true";
+}
+	
 /*
 Write a a function named vector_of_primes with an integer parameter
 that given a number returns all the prime numbers up to the number

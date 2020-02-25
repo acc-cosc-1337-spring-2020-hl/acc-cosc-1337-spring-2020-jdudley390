@@ -13,7 +13,7 @@ int main()
 	vector<int> nums{ 3, 56, 76, 23, 54, 12, 6};
 	
 	
-	int get_max_from_vector(nums);
+	int get_max_from_vector(vector<int> nums);
 
 	return 0;
 }
