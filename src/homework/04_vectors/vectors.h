@@ -4,6 +4,7 @@
 using std::cout;
 using std::cin;
 using std::vector;
+using std::max_element;
 /*
 Write a value return function prototype get_max_from_vector with a 
 const reference vector of ints parameter that returns an int

@@ -10,8 +10,11 @@ Program continues until user decides to exit.
 */
 int main() 
 {
+	vector<int> nums{ 2, 4, 56, 43, 31, 97, 60 };
+	get_max_from_vector(nums);
+
+	bool is_prime(18);
 	
-	bool is_prime(16);
 
 	return 0;
 }
