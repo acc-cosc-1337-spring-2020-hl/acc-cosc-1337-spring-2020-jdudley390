@@ -8,9 +8,8 @@ vector of intsparameter that returns the max value in a vector
 */
 int get_max_from_vector(const vector<int>& nums)
 {
-		
-	cout << "Max " << *std::max_element(nums.begin(), nums.end());
-	
+	//Find max element and show user
+	cout << "Max: " << *max_element(nums.begin(), nums.end());
 	
 	return 0;
 }
@@ -25,15 +24,15 @@ given a number returns true if prime or false if not prime
 */
 bool is_prime(int nums)
 {
-	bool prime = true;
+	
 	for (int i = 2; i <= nums / 2; i++)
 	{
 		if (nums % i == 0) {
-			prime = false;
-			break;
+			return false;
+			
 		}
 	}
-	return prime;
+	return true;
 	
 }
 	
@@ -49,5 +48,23 @@ Example given number 10 returns a vector with elements 2,3,5,7,
 Make sure to use the is_prime function to determine if current 
 number is prime.
 */
+vector<int> vector_of_primes(int num)
+{
+	vector<int> vector_of_primes;
+
+	for (int i = 2; i <= num; i++)
+	{
+		if (is_prime(i)) 
+		{
+			vector_of_primes.push_back(i);
+		}
+	}
+
+	for (int d = 0; d < vector_of_primes.size(); d++)
+	{
+		cout << vector_of_primes[d];
+	}
+	return vector_of_primes;
+}
 
 

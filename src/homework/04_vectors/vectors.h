@@ -29,9 +29,9 @@ bool is_prime(int nums);
 /*
 Write a a function prototype named vector_of_primes with an integer 
 parameterthat Given a number returns all the prime numbers up to 
-the number
+the nectumber
 
 @param int integer value
 @return vector of ints containing prime values up to a value
 */
-int vector_of_primes(vector<int> nums);
+vector<int> vector_of_primes(int num);
