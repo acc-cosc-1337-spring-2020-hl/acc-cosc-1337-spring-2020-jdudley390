@@ -7,11 +7,25 @@ void BankAccount::deposit(int amount) //deposit is a member funtion of BankAccou
 	{
 		balance += amount;
 	}
+	else
+	{
+		//usually write to a file 
+		throw InvalidAmount("\nAmount must be greater than 0.");
+	}
 }
 
 void BankAccount::withdraw(int amount)
 {
-	if (amount > 0 && balance-amount >= 0)
+	if (amount <= 0)
+	{
+		throw InvalidAmount("\nAmount must be greater than 0.");
+	}
+	else if(balance - amount < 0)
+	{
+		throw InvalidAmount("\nInufficient funds.");
+
+	}
+	else
 	{
 		balance -= amount;
 	}
