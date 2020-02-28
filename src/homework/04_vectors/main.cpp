@@ -20,10 +20,11 @@ int main()
 	cin >> choice;
 	while (choice != 3)
 	{
+		vector<int> vector_of_primes;
 		if (choice == 1)
 		{
 			
-			vector<int> nums{ 12, 76, 54, 10, 23, 45, 32 };
+			vector<int> nums{ 12, 65, 54, 10, 23, 45, 32 };
 			
 			get_max_from_vector(nums);
 			cout << "\nPress 3 to exit ";
@@ -32,16 +33,16 @@ int main()
 			
 			
 		}
+
 		else if (choice == 2)
 		{
 			
-			int number;
-			cout << "Enter a number ";
-			cin >> number;
 			
+			int number = 77;
 			vector<int> vector_of_primes(number);
 			cout << "\nPress 3 to exit ";
 			cin >> choice;
+
 		}
 		else
 		{
