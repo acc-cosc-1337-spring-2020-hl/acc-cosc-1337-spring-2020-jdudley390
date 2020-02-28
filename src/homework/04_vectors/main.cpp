@@ -23,7 +23,7 @@ int main()
 		if (choice == 1)
 		{
 			
-			vector<int> nums{ 12, 34, 54, 65, 23, 45, 32 };
+			vector<int> nums{ 12, 76, 54, 10, 23, 45, 32 };
 			
 			get_max_from_vector(nums);
 			cout << "\nPress 3 to exit ";
@@ -45,7 +45,7 @@ int main()
 		}
 		else
 		{
-			cout << "Invalid entry";
+			break;
 		}
 		
 	}

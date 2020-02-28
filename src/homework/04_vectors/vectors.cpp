@@ -9,7 +9,16 @@ vector of intsparameter that returns the max value in a vector
 int get_max_from_vector(const vector<int>& nums)
 {
 	//Find max element and show user
-	cout << "Max: " << *max_element(nums.begin(), nums.end());
+	vector<int> max_vec{nums};
+	int max = max_vec[0];
+	for (int i = 0; i < max_vec.size(); i++)
+	{
+		if (max_vec[i] > max) {
+			max = max_vec[i];
+
+		}
+
+	}
 	
 	return 0;
 }
@@ -50,19 +59,23 @@ number is prime.
 */
 vector<int> vector_of_primes(int num)
 {
-	vector<int> vector_of_primes;
+	vector<int> prime_vec{};
 
 	for (int i = 2; i <= num; i++)
 	{
+		
+
 		if (is_prime(i)) 
 		{
-			vector_of_primes.push_back(i);
+			prime_vec.push_back(i);
 		}
 	}
 
-	for (int d = 0; d < vector_of_primes.size(); d++)
+	vector<int> vector_of_primes;
+
+	for (size_t d = 0; d < prime_vec.size(); d++)
 	{
-		cout << vector_of_primes[d];
+		cout << prime_vec[d];
 	}
 	return vector_of_primes;
 }
