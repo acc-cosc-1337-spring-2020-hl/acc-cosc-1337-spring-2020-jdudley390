@@ -8,12 +8,11 @@ that calculates area of the rectangle.  The class has 3 int private variables ar
 class rect
 {
 public:
-	rect(int w, int h) : width{ w }, height{ h } {};
-	int get_area() const { return calculate_area;  }
-	
+	rect(int w, int h) : width{ w }, height{ h } {}
+	int get_area();
 private:
-	int calculate_area;
-	int area;
+	int calculate_area();
 	int width;
 	int height;
+	int area = calculate_area();
 };
