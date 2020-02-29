@@ -11,24 +11,26 @@ Program continues until user decides to exit.
 int main() 
 {
 	//Declare variable to control menu
-	int choice;
-	cout << "What would you like to do?\n";
-	cout << "Press 1 to get max of numbers.\n";
-	cout << "Press 2 to get list of primes\n";
-	cout << "Press 3 to quit\n";
-	//Have user enter 1, 2 or 3 to start or terminate program
-	cin >> choice;
+	vector<int> nums{ 8, 4, 20, 88, 66, 99 };
+	int choice{ 0 };
+	
+	
 	while (choice != 3)
 	{
-		vector<int> vector_of_primes;
+		cout << "What would you like to do?\n";
+		cout << "Press 1 to get max of numbers.\n";
+		cout << "Press 2 to get list of primes\n";
+		cout << "Press 3 to quit\n";
+		//Have user enter 1, 2 or 3 to start or terminate program
+		cin >> choice;
+		
 		if (choice == 1)
 		{
 			
-			vector<int> nums{ 12, 65, 54, 10, 23, 45, 32 };
 			
-			get_max_from_vector(nums);
-			cout << "\nPress 3 to exit ";
-			cin >> choice;
+			
+			auto max = get_max_from_vector(nums);
+			
 			
 			
 			
@@ -37,16 +39,22 @@ int main()
 		else if (choice == 2)
 		{
 			
+			int number;
+			cout << "Enter a number to retrieve its primes numbers: ";
+			cin >> number;
+
+			auto primes = vector_of_primes(number);
+			for (auto prime : primes) 
+			{
+				cout << prime << " ";
+			}
+
 			
-			int number = 77;
-			vector<int> vector_of_primes(number);
-			cout << "\nPress 3 to exit ";
-			cin >> choice;
 
 		}
-		else
+		else if(choice != 3)
 		{
-			break;
+			cout << "\nIncorrect choice.\n";
 		}
 		
 	}

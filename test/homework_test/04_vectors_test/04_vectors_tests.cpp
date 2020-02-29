@@ -9,18 +9,15 @@ TEST_CASE("Verify Test Configuration", "verification") {
 TEST_CASE("Test Max function")
 {
 	vector<int> nums{ 3, 8, 1, 99, 1000 };
-	int max;
-	get_max_from_vector(nums);
+	int max = get_max_from_vector(nums);
 	REQUIRE(max == 1000);
 
-	vector<int> nums{ 15, 12, 11, 99, 88 };
-	int max;
-	get_max_from_vector(nums);
+	nums = { 15, 12, 11, 99, 88 };
+	max = get_max_from_vector(nums);
 	REQUIRE(max == 99);
 
-	vector<int> nums{ 150, 120, 11, 990, 88888 };
-	int max;
-	get_max_from_vector(nums);
+	nums = { 150, 120, 11, 990, 88888 };
+	max = get_max_from_vector(nums);
 	REQUIRE(max == 88888);
 
 }
@@ -33,13 +30,13 @@ TEST_CASE("Test is prime function")
 }
 TEST_CASE("Test is prime vectors function")
 {
-	vector<int> vector_of_primes(10);
+	auto primes = vector_of_primes(10);
 	vector<int>prime_vec{ 2, 3, 5, 7 };
-	REQUIRE(vector_of_primes == prime_vec);
+	REQUIRE(primes == prime_vec);
 
-	vector<int> vector_of_primes(50);
-	vector<int>prime_vec{ 2, 3, 5, 7 };
-	REQUIRE(vector_of_primes == prime_vec);
+	primes = vector_of_primes(50);
+	vector<int> primes_of_50{ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 };
+	REQUIRE(primes == primes_of_50);
 	
 
 }

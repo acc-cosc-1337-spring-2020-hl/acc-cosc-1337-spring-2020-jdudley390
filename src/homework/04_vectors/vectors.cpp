@@ -9,18 +9,18 @@ vector of intsparameter that returns the max value in a vector
 int get_max_from_vector(const vector<int>& nums)
 {
 	//Find max element and show user
-	vector<int> max_vec{};
-	int max = max_vec[0];
-	for (int i = 1; i < max_vec.size(); i++)
+	
+	int max = nums[0];
+	for (int i = 1; i < nums.size(); i++)
 	{
-		if (max_vec[i] > max) {
-			max = max_vec[i];
+		if (nums[i] > max) {
+			max = nums[i];
 
 		}
 
 	}
 	
-	return 0;
+	return max;
 }
 
 
