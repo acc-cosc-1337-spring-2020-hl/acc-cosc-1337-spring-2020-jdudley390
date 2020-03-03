@@ -1,23 +1,25 @@
 //tic_tac_toe.h
 #include<string>
+using std::string;
+
+class TicTacToe
+{
+public:
+	void start_game(string first_player);
+	void mark_board(int position);
+	string get_player() const;
+private:
+	void set_next_player();
+	string player;
+};
 
 class Error
 {
 public: 
-	Error(std::string msg) : message{ msg } {};
-	string get_message() { return message; }
+	Error(string msg) : message{ msg } {};
+	string get_message();
 private:
 	std::string message;
 
 };
 
-class TicTacToe
-{
-public: 
-	void start_game(string first_player);
-	void mark_board(int position);
-	std::string get_player() const {return }
-private:
-	void set_next_player();
-	std::string player;
-};
