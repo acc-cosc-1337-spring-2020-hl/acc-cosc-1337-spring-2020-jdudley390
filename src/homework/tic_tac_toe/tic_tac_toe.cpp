@@ -10,7 +10,7 @@ void TicTacToe::start_game(string first_player)
 	}
 	else
 	{
-		throw Error("Must use characters 'X' or 'O');
+		throw Error("Must use characters 'X' or 'O'");
 	}
 }
 //Make board only have spaces 1-9 to play in
@@ -36,7 +36,7 @@ void TicTacToe::set_next_player()
 {
 	if (player == "X")
 	{
-		player = "O;
+		player = "O";
 	}
 	else if (player == "O")
 	{
