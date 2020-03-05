@@ -25,7 +25,7 @@ int main()
 	int sumArea = 0;
 
 	for (auto a : rectangles) {
-		cout << a.get_area() << "\t";
+		cout << a << "\t";
 		sumArea += a.get_area();
 	}
 

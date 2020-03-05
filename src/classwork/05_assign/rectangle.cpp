@@ -21,6 +21,6 @@ int rect::get_area()
 
 std::ostream & operator<<(std::ostream & out, const rect & a)
 {
-	cout << "Area: " << a.area << "\n";
+	out << "Area: " << a.area << "\n";
 	return out;
 }
