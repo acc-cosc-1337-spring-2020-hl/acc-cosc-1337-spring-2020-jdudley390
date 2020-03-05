@@ -2,11 +2,17 @@
 #include<iostream>
 #include<vector>
 
-using std::cout; using std::vector;
+using std::cout; using std::vector; using std::cin;
 
 
 int main()
 {
+	BankAccount a(50), b(10);
+	//BankAccount
+	display_balance(a);
+	
+	cin >> a;
+	cout << a;
 	
 	vector<BankAccount> accounts{ BankAccount(100),
 	BankAccount(200), BankAccount(300) };

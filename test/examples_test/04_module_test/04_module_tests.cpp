@@ -43,3 +43,9 @@ TEST_CASE("Test BankAccount withdraw")
 		InvalidAmount);
 	REQUIRE(account.get_balance() == 100);
 }
+TEST_CASE("Test bak account get rate")
+{
+	BankAccount account;
+	
+	REQUIRE(account.get_rate() == .0825);
+}

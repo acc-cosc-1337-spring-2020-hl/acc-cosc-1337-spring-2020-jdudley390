@@ -16,6 +16,10 @@ Iterate the vector and display the Area for each Rectangle on one line and the t
 */
 int main()
 {
+	rect a(4, 5);
+	cout << a;
+
+
 	vector<rect> rectangles{ rect(4,5), rect(10,10), rect(100,10) };
 
 	int sumArea = 0;
