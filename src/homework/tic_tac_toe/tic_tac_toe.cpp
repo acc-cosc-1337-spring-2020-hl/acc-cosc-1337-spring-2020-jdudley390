@@ -1,55 +1,62 @@
 //cpp
 #include "tic_tac_toe.h"
 
-//Manke if/else statement so players only use "X" and "O"
+// TicTacToe Class
 void TicTacToe::start_game(string first_player)
 {
-	if (first_player == "X" || first_player == "O")
+	if ((first_player == "X" || first_player == "O"))
 	{
-		first_player = player;
+		player = first_player;
+		
+	}
+	else if (player == "")
+	{
+		throw Error("Must begin game!");
 	}
 	else
 	{
-		throw Error("Must use characters 'X' or 'O'");
+		throw Error("Must use X or O!");
 	}
 }
-//Make board only have spaces 1-9 to play in
+
 void TicTacToe::mark_board(int position)
 {
-	if (position >= 1 || position <= 9)
+	if ((position >= 1 || position <= 9))
 	{
-		set_next_player
+		set_next_player();
+		
 	}
+
 	else
+
 	{
-		throw Error("Must start in position 1-9");
+		throw Error("Must be between 1 and 9!");
 	}
 }
-//Get who's turn it is
-string TicTacToe::get_player() const
-{
-	
-	return player();
-}
-//have turns exchange back and forth
+
 void TicTacToe::set_next_player()
 {
-	if (player == "X")
-	{
-		player = "O";
-	}
-	else if (player == "O")
+	if (player == "0")
 	{
 		player = "X";
 	}
+	else if (player == "X")
+	{
+		player = "O";
+	}
 	else
 	{
-		throw Error("Must have a valid player!");
+		throw Error("Player not allowed");
 	}
 }
 
+string TicTacToe::get_player() const
+{
+	return player;
+}
+
+// Error Class
 string Error::get_message()
 {
-
-	return message();
+	return message;
 }

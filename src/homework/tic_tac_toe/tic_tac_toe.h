@@ -19,7 +19,7 @@ public:
 	Error(string msg) : message{ msg } {};
 	string get_message();
 private:
-	std::string message;
+	string message;
 
 };
 
