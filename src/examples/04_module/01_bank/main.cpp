@@ -1,39 +1,52 @@
+#include<savings_account.h>
 #include "checking_account.h"
 #include<iostream>
 #include<vector>
-
+#include<functional>
+#include<memory>
 using std::cout; using std::vector; using std::cin;
+using std::reference_wrapper;
 
 
 int main()
 {
+	SavingsAccount s(100);
+	CheckingAccount c(100);
 
-	CheckingAccount c;
-	CheckingAccount a(50), b(10);
-	//BankAccount
-	display_balance(a);
-	
-	cin >> a;
-	cout << a;
-	
-	vector<BankAccount> accounts{ BankAccount(100),
-	BankAccount(200), BankAccount(300) };
+	vector<reference_wrapper<BankAccount>> acts{ s, c };
 
-	for (auto act : accounts)
+	for (auto account_ref : acts)
 	{
-		cout << act.get_balance() << "\n";
-	}
-	BankAccount account(500); 
-	int balance = account.get_balance();
-	cout << "Balance: " << balance;
-
-	try 
-	{
-		account.deposit(-10);
-	}
-	catch (InvalidAmount e) //makes it easier to test
-	{
-		cout << e.get_message();
+		cout << account_ref.get().get_balance() << "\n";
 	}
 	return 0;
 }
+	//CheckingAccount c;
+	//CheckingAccount a(50), b(10);
+	//BankAccount
+	//display_balance(a);
+	
+	//cin >> a;
+	//cout << a;
+	
+	//vector<BankAccount> accounts{ BankAccount(100),
+	//BankAccount(200), BankAccount(300) };
+
+	//for (auto act : accounts)
+	//{
+	//	cout << act.get_balance() << "\n";
+	//}
+	//BankAccount account(500); 
+	//int balance = account.get_balance();
+	//cout << "Balance: " << balance;
+
+	//try 
+	//{
+	//	account.deposit(-10);
+	//}
+	//catch (InvalidAmount e) //makes it easier to test
+	//{
+	//	cout << e.get_message();
+	//}
+	//return 0;
+//}
