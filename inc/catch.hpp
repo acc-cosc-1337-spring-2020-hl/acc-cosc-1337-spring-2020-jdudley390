@@ -262,9 +262,9 @@ namespace Catch {
 
 	class NonCopyable {
 		NonCopyable(NonCopyable const&) = delete;
-		NonCopyable(NonCopyable &&) = delete;
+		NonCopyable(NonCopyable&&) = delete;
 		NonCopyable& operator = (NonCopyable const&) = delete;
-		NonCopyable& operator = (NonCopyable &&) = delete;
+		NonCopyable& operator = (NonCopyable&&) = delete;
 
 	protected:
 		NonCopyable();
@@ -280,9 +280,9 @@ namespace Catch {
 		{}
 
 		SourceLineInfo(SourceLineInfo const& other) = default;
-		SourceLineInfo(SourceLineInfo &&) = default;
+		SourceLineInfo(SourceLineInfo&&) = default;
 		SourceLineInfo& operator = (SourceLineInfo const&) = default;
-		SourceLineInfo& operator = (SourceLineInfo &&) = default;
+		SourceLineInfo& operator = (SourceLineInfo&&) = default;
 
 		bool empty() const noexcept;
 		bool operator == (SourceLineInfo const& other) const noexcept;
@@ -426,7 +426,7 @@ namespace Catch {
 			delete[] m_data;
 		}
 
-		auto operator = (StringRef const &other) noexcept -> StringRef& {
+		auto operator = (StringRef const& other) noexcept -> StringRef& {
 			delete[] m_data;
 			m_data = nullptr;
 			m_start = other.m_start;
@@ -485,9 +485,9 @@ namespace Catch {
 
 	template<typename C>
 	class TestInvokerAsMethod : public ITestInvoker {
-		void (C::*m_testAsMethod)();
+		void (C::* m_testAsMethod)();
 	public:
-		TestInvokerAsMethod(void (C::*testAsMethod)()) noexcept : m_testAsMethod(testAsMethod) {}
+		TestInvokerAsMethod(void (C::* testAsMethod)()) noexcept : m_testAsMethod(testAsMethod) {}
 
 		void invoke() const override {
 			C obj;
@@ -498,7 +498,7 @@ namespace Catch {
 	auto makeTestInvoker(void(*testAsFunction)()) noexcept->ITestInvoker*;
 
 	template<typename C>
-	auto makeTestInvoker(void (C::*testAsMethod)()) noexcept -> ITestInvoker* {
+	auto makeTestInvoker(void (C::* testAsMethod)()) noexcept -> ITestInvoker* {
 		return new(std::nothrow) TestInvokerAsMethod<C>(testAsMethod);
 	}
 
@@ -665,7 +665,7 @@ namespace Catch {
 		virtual std::ostream& stream() const = 0;
 	};
 
-	auto makeStream(StringRef const &filename)->IStream const*;
+	auto makeStream(StringRef const& filename)->IStream const*;
 
 	class ReusableStringStream {
 		std::size_t m_index;
@@ -705,7 +705,7 @@ id performOptionalSelector(id obj, SEL sel);
 
 #if !CATCH_ARC_ENABLED
 inline void arcSafeRelease(NSObject* obj) {
-	[obj release];
+	[obj release] ;
 }
 inline id performOptionalSelector(id obj, SEL sel) {
 	if ([obj respondsToSelector : sel])
@@ -752,7 +752,7 @@ namespace Catch {
 
 		extern const std::string unprintableString;
 
-		std::string rawMemoryToString(const void *object, std::size_t size);
+		std::string rawMemoryToString(const void* object, std::size_t size);
 
 		template<typename T>
 		std::string rawMemoryToString(const T& object) {
@@ -797,7 +797,7 @@ namespace Catch {
 				return std::string("null");
 			auto bytes = System::Text::Encoding::UTF8->GetBytes(ref->ToString());
 			cli::pin_ptr<System::Byte> p = &bytes[0];
-			return std::string(reinterpret_cast<char const *>(p), bytes->Length);
+			return std::string(reinterpret_cast<char const*>(p), bytes->Length);
 		}
 #endif
 
@@ -860,22 +860,22 @@ namespace Catch {
 #endif
 
 	template<>
-	struct StringMaker<char const *> {
-		static std::string convert(char const * str);
+	struct StringMaker<char const*> {
+		static std::string convert(char const* str);
 	};
 	template<>
-	struct StringMaker<char *> {
-		static std::string convert(char * str);
+	struct StringMaker<char*> {
+		static std::string convert(char* str);
 	};
 
 #ifdef CATCH_CONFIG_WCHAR
 	template<>
-	struct StringMaker<wchar_t const *> {
-		static std::string convert(wchar_t const * str);
+	struct StringMaker<wchar_t const*> {
+		static std::string convert(wchar_t const* str);
 	};
 	template<>
-	struct StringMaker<wchar_t *> {
-		static std::string convert(wchar_t * str);
+	struct StringMaker<wchar_t*> {
+		static std::string convert(wchar_t* str);
 	};
 #endif
 
@@ -890,13 +890,13 @@ namespace Catch {
 	template<int SZ>
 	struct StringMaker<signed char[SZ]> {
 		static std::string convert(signed char const* str) {
-			return ::Catch::Detail::stringify(std::string{ reinterpret_cast<char const *>(str) });
+			return ::Catch::Detail::stringify(std::string{ reinterpret_cast<char const*>(str) });
 		}
 	};
 	template<int SZ>
 	struct StringMaker<unsigned char[SZ]> {
 		static std::string convert(unsigned char const* str) {
-			return ::Catch::Detail::stringify(std::string{ reinterpret_cast<char const *>(str) });
+			return ::Catch::Detail::stringify(std::string{ reinterpret_cast<char const*>(str) });
 		}
 	};
 
@@ -1009,7 +1009,7 @@ namespace Catch {
 #ifdef __OBJC__
 	template<>
 	struct StringMaker<NSString*> {
-		static std::string convert(NSString * nsstring) {
+		static std::string convert(NSString* nsstring) {
 			if (!nsstring)
 				return "nil";
 			return std::string("@") + [nsstring UTF8String];
@@ -1268,7 +1268,7 @@ namespace Catch {
 
 			auto const timeStampSize = sizeof("2017-01-16T17:06:45Z");
 			char timeStamp[timeStampSize];
-			const char * const fmt = "%Y-%m-%dT%H:%M:%SZ";
+			const char* const fmt = "%Y-%m-%dT%H:%M:%SZ";
 
 #ifdef _MSC_VER
 			std::strftime(timeStamp, timeStampSize, fmt, &timeInfo);
@@ -1301,7 +1301,7 @@ namespace Catch {
 	struct ITransientExpression {
 		auto isBinaryExpression() const -> bool { return m_isBinaryExpression; }
 		auto getResult() const -> bool { return m_result; }
-		virtual void streamReconstructedExpression(std::ostream &os) const = 0;
+		virtual void streamReconstructedExpression(std::ostream& os) const = 0;
 
 		ITransientExpression(bool isBinaryExpression, bool result)
 			: m_isBinaryExpression(isBinaryExpression),
@@ -1317,7 +1317,7 @@ namespace Catch {
 
 	};
 
-	void formatReconstructedExpression(std::ostream &os, std::string const& lhs, StringRef op, std::string const& rhs);
+	void formatReconstructedExpression(std::ostream& os, std::string const& lhs, StringRef op, std::string const& rhs);
 
 	template<typename LhsT, typename RhsT>
 	class BinaryExpr : public ITransientExpression {
@@ -1325,7 +1325,7 @@ namespace Catch {
 		StringRef m_op;
 		RhsT m_rhs;
 
-		void streamReconstructedExpression(std::ostream &os) const override {
+		void streamReconstructedExpression(std::ostream& os) const override {
 			formatReconstructedExpression
 			(os, Catch::Detail::stringify(m_lhs), m_op, Catch::Detail::stringify(m_rhs));
 		}
@@ -1343,7 +1343,7 @@ namespace Catch {
 	class UnaryExpr : public ITransientExpression {
 		LhsT m_lhs;
 
-		void streamReconstructedExpression(std::ostream &os) const override {
+		void streamReconstructedExpression(std::ostream& os) const override {
 			os << Catch::Detail::stringify(m_lhs);
 		}
 
@@ -1500,9 +1500,9 @@ namespace Catch {
 		virtual void handleIncomplete
 		(AssertionInfo const& info) = 0;
 		virtual void handleNonExpr
-		(AssertionInfo const &info,
+		(AssertionInfo const& info,
 			ResultWas::OfType resultType,
-			AssertionReaction &reaction) = 0;
+			AssertionReaction& reaction) = 0;
 
 		virtual bool lastAssertionPassed() = 0;
 		virtual void assertionPassed() = 0;
@@ -2553,9 +2553,9 @@ namespace Catch {
 			template<typename T>
 			struct ContainsElementMatcher : MatcherBase<std::vector<T>> {
 
-				ContainsElementMatcher(T const &comparator) : m_comparator(comparator) {}
+				ContainsElementMatcher(T const& comparator) : m_comparator(comparator) {}
 
-				bool match(std::vector<T> const &v) const override {
+				bool match(std::vector<T> const& v) const override {
 					for (auto const& el : v) {
 						if (el == m_comparator) {
 							return true;
@@ -2574,9 +2574,9 @@ namespace Catch {
 			template<typename T>
 			struct ContainsMatcher : MatcherBase<std::vector<T>> {
 
-				ContainsMatcher(std::vector<T> const &comparator) : m_comparator(comparator) {}
+				ContainsMatcher(std::vector<T> const& comparator) : m_comparator(comparator) {}
 
-				bool match(std::vector<T> const &v) const override {
+				bool match(std::vector<T> const& v) const override {
 					// !TBD: see note in EqualsMatcher
 					if (m_comparator.size() > v.size())
 						return false;
@@ -2604,9 +2604,9 @@ namespace Catch {
 			template<typename T>
 			struct EqualsMatcher : MatcherBase<std::vector<T>> {
 
-				EqualsMatcher(std::vector<T> const &comparator) : m_comparator(comparator) {}
+				EqualsMatcher(std::vector<T> const& comparator) : m_comparator(comparator) {}
 
-				bool match(std::vector<T> const &v) const override {
+				bool match(std::vector<T> const& v) const override {
 					// !TBD: This currently works if all elements can be compared using !=
 					// - a more general approach would be via a compare template that defaults
 					// to using !=. but could be specialised for, e.g. std::vector<T> etc
@@ -2708,7 +2708,7 @@ namespace Catch {
 			m_matcherString(matcherString)
 		{}
 
-		void streamReconstructedExpression(std::ostream &os) const override {
+		void streamReconstructedExpression(std::ostream& os) const override {
 			auto matcherAsString = m_matcher.toString();
 			os << Catch::Detail::stringify(m_arg) << ' ';
 			if (matcherAsString == Detail::unprintableString)
@@ -2886,11 +2886,11 @@ namespace Catch {
 		OcMethod(Class cls, SEL sel) : m_cls(cls), m_sel(sel) {}
 
 		virtual void invoke() const {
-			id obj = [[m_cls alloc] init];
+			id obj = [[m_cls alloc]init];
 
-			performOptionalSelector(obj, @selector(setUp)  );
+			performOptionalSelector(obj, @selector(setUp));
 			performOptionalSelector(obj, m_sel);
-			performOptionalSelector(obj, @selector(tearDown)  );
+			performOptionalSelector(obj, @selector(tearDown));
 
 			arcSafeRelease(obj);
 		}
@@ -2906,8 +2906,8 @@ namespace Catch {
 		inline std::string getAnnotation(Class cls,
 			std::string const& annotationName,
 			std::string const& testCaseName) {
-			NSString* selStr = [[NSString alloc] initWithFormat:@"Catch_%s_%s", annotationName.c_str(), testCaseName.c_str()];
-				SEL sel = NSSelectorFromString(selStr);
+			NSString* selStr = [[NSString alloc]initWithFormat:@"Catch_%s_%s", annotationName.c_str(), testCaseName.c_str()];
+			SEL sel = NSSelectorFromString(selStr);
 			arcSafeRelease(selStr);
 			id value = performOptionalSelector(cls, sel);
 			if (value)
@@ -2920,7 +2920,7 @@ namespace Catch {
 		std::size_t noTestMethods = 0;
 		int noClasses = objc_getClassList(nullptr, 0);
 
-		Class* classes = (CATCH_UNSAFE_UNRETAINED Class *)malloc(sizeof(Class) * noClasses);
+		Class* classes = (CATCH_UNSAFE_UNRETAINED Class*)malloc(sizeof(Class) * noClasses);
 		objc_getClassList(classes, noClasses);
 
 		for (int c = 0; c < noClasses; c++) {
@@ -3537,7 +3537,7 @@ namespace Catch {
 		}
 
 	private:
-		T *nullableValue;
+		T* nullableValue;
 		alignas(alignof(T)) char storage[sizeof(T)];
 	};
 
@@ -3603,9 +3603,9 @@ namespace Catch {
 			Totals const& _totals);
 
 		AssertionStats(AssertionStats const&) = default;
-		AssertionStats(AssertionStats &&) = default;
+		AssertionStats(AssertionStats&&) = default;
 		AssertionStats& operator = (AssertionStats const&) = default;
-		AssertionStats& operator = (AssertionStats &&) = default;
+		AssertionStats& operator = (AssertionStats&&) = default;
 		virtual ~AssertionStats();
 
 		AssertionResult assertionResult;
@@ -3619,9 +3619,9 @@ namespace Catch {
 			double _durationInSeconds,
 			bool _missingAssertions);
 		SectionStats(SectionStats const&) = default;
-		SectionStats(SectionStats &&) = default;
+		SectionStats(SectionStats&&) = default;
 		SectionStats& operator = (SectionStats const&) = default;
-		SectionStats& operator = (SectionStats &&) = default;
+		SectionStats& operator = (SectionStats&&) = default;
 		virtual ~SectionStats();
 
 		SectionInfo sectionInfo;
@@ -3638,9 +3638,9 @@ namespace Catch {
 			bool _aborting);
 
 		TestCaseStats(TestCaseStats const&) = default;
-		TestCaseStats(TestCaseStats &&) = default;
+		TestCaseStats(TestCaseStats&&) = default;
 		TestCaseStats& operator = (TestCaseStats const&) = default;
-		TestCaseStats& operator = (TestCaseStats &&) = default;
+		TestCaseStats& operator = (TestCaseStats&&) = default;
 		virtual ~TestCaseStats();
 
 		TestCaseInfo testInfo;
@@ -3657,9 +3657,9 @@ namespace Catch {
 		TestGroupStats(GroupInfo const& _groupInfo);
 
 		TestGroupStats(TestGroupStats const&) = default;
-		TestGroupStats(TestGroupStats &&) = default;
+		TestGroupStats(TestGroupStats&&) = default;
 		TestGroupStats& operator = (TestGroupStats const&) = default;
-		TestGroupStats& operator = (TestGroupStats &&) = default;
+		TestGroupStats& operator = (TestGroupStats&&) = default;
 		virtual ~TestGroupStats();
 
 		GroupInfo groupInfo;
@@ -3673,9 +3673,9 @@ namespace Catch {
 			bool _aborting);
 
 		TestRunStats(TestRunStats const&) = default;
-		TestRunStats(TestRunStats &&) = default;
+		TestRunStats(TestRunStats&&) = default;
 		TestRunStats& operator = (TestRunStats const&) = default;
-		TestRunStats& operator = (TestRunStats &&) = default;
+		TestRunStats& operator = (TestRunStats&&) = default;
 		virtual ~TestRunStats();
 
 		TestRunInfo runInfo;
@@ -4711,7 +4711,7 @@ namespace Catch {
 		virtual void setConfig(IConfigPtr const& config) = 0;
 
 	private:
-		static IMutableContext *currentContext;
+		static IMutableContext* currentContext;
 		friend IMutableContext& getCurrentMutableContext();
 		friend void cleanUpContext();
 		static void createContext();
@@ -4905,9 +4905,9 @@ namespace Catch {
 		void handleIncomplete
 		(AssertionInfo const& info) override;
 		void handleNonExpr
-		(AssertionInfo const &info,
+		(AssertionInfo const& info,
 			ResultWas::OfType resultType,
-			AssertionReaction &reaction) override;
+			AssertionReaction& reaction) override;
 
 		bool sectionStarted(SectionInfo const& sectionInfo, Counts& assertions) override;
 
@@ -4946,9 +4946,9 @@ namespace Catch {
 
 		void assertionEnded(AssertionResult const& result);
 		void reportExpr
-		(AssertionInfo const &info,
+		(AssertionInfo const& info,
 			ResultWas::OfType resultType,
-			ITransientExpression const *expr,
+			ITransientExpression const* expr,
 			bool negated);
 
 		void populateReaction(AssertionReaction& reaction);
@@ -5079,7 +5079,7 @@ namespace Catch {
 // start catch_assertionresult.cpp
 
 namespace Catch {
-	AssertionResultData::AssertionResultData(ResultWas::OfType _resultType, LazyExpression const & _lazyExpression) :
+	AssertionResultData::AssertionResultData(ResultWas::OfType _resultType, LazyExpression const& _lazyExpression) :
 		lazyExpression(_lazyExpression),
 		resultType(_resultType) {}
 
@@ -5367,7 +5367,7 @@ namespace Catch {
 						return initial == std::string::npos ? m_column.m_indent : initial;
 					}
 
-					auto addIndentAndSuffix(std::string const &plain) const -> std::string {
+					auto addIndentAndSuffix(std::string const& plain) const -> std::string {
 						return std::string(indent(), ' ') + (m_suffix ? plain + "-" : plain);
 					}
 
@@ -5676,7 +5676,7 @@ namespace Catch {
 						++it;
 
 					if (it != itEnd) {
-						auto const &next = *it;
+						auto const& next = *it;
 						if (isOptPrefix(next[0])) {
 							auto delimiterPos = next.find_first_of(" :=");
 							if (delimiterPos != std::string::npos) {
@@ -5703,7 +5703,7 @@ namespace Catch {
 				}
 
 			public:
-				explicit TokenStream(Args const &args) : TokenStream(args.m_args.begin(), args.m_args.end()) {}
+				explicit TokenStream(Args const& args) : TokenStream(args.m_args.begin(), args.m_args.end()) {}
 
 				TokenStream(Iterator it, Iterator itEnd) : it(it), itEnd(itEnd) {
 					loadBuffer();
@@ -5720,12 +5720,12 @@ namespace Catch {
 					return m_tokenBuffer.front();
 				}
 
-				auto operator->() const -> Token const * {
+				auto operator->() const -> Token const* {
 					assert(!m_tokenBuffer.empty());
 					return &m_tokenBuffer.front();
 				}
 
-				auto operator++() -> TokenStream & {
+				auto operator++() -> TokenStream& {
 					if (m_tokenBuffer.size() >= 2) {
 						m_tokenBuffer.erase(m_tokenBuffer.begin());
 					}
@@ -5756,7 +5756,7 @@ namespace Catch {
 			template<typename T>
 			class ResultValueBase : public ResultBase {
 			public:
-				auto value() const -> T const & {
+				auto value() const -> T const& {
 					enforceOk();
 					return m_value;
 				}
@@ -5764,16 +5764,16 @@ namespace Catch {
 			protected:
 				ResultValueBase(Type type) : ResultBase(type) {}
 
-				ResultValueBase(ResultValueBase const &other) : ResultBase(other) {
+				ResultValueBase(ResultValueBase const& other) : ResultBase(other) {
 					if (m_type == ResultBase::Ok)
 						new(&m_value) T(other.m_value);
 				}
 
-				ResultValueBase(Type, T const &value) : ResultBase(Ok) {
+				ResultValueBase(Type, T const& value) : ResultBase(Ok) {
 					new(&m_value) T(value);
 				}
 
-				auto operator=(ResultValueBase const &other) -> ResultValueBase & {
+				auto operator=(ResultValueBase const& other) -> ResultValueBase& {
 					if (m_type == ResultBase::Ok)
 						m_value.~T();
 					ResultBase::operator=(other);
@@ -5802,7 +5802,7 @@ namespace Catch {
 			class BasicResult : public ResultValueBase<T> {
 			public:
 				template<typename U>
-				explicit BasicResult(BasicResult<U> const &other)
+				explicit BasicResult(BasicResult<U> const& other)
 					: ResultValueBase<T>(other.type()),
 					m_errorMessage(other.errorMessage())
 				{
@@ -5810,10 +5810,10 @@ namespace Catch {
 				}
 
 				template<typename U>
-				static auto ok(U const &value) -> BasicResult { return { ResultBase::Ok, value }; }
+				static auto ok(U const& value) -> BasicResult { return { ResultBase::Ok, value }; }
 				static auto ok() -> BasicResult { return { ResultBase::Ok }; }
-				static auto logicError(std::string const &message) -> BasicResult { return { ResultBase::LogicError, message }; }
-				static auto runtimeError(std::string const &message) -> BasicResult { return { ResultBase::RuntimeError, message }; }
+				static auto logicError(std::string const& message) -> BasicResult { return { ResultBase::LogicError, message }; }
+				static auto runtimeError(std::string const& message) -> BasicResult { return { ResultBase::RuntimeError, message }; }
 
 				explicit operator bool() const { return m_type == ResultBase::Ok; }
 				auto type() const -> ResultBase::Type { return m_type; }
@@ -5832,7 +5832,7 @@ namespace Catch {
 
 				std::string m_errorMessage; // Only populated if resultType is an error
 
-				BasicResult(ResultBase::Type type, std::string const &message)
+				BasicResult(ResultBase::Type type, std::string const& message)
 					: ResultValueBase<T>(type),
 					m_errorMessage(message)
 				{
@@ -5850,7 +5850,7 @@ namespace Catch {
 			class ParseState {
 			public:
 
-				ParseState(ParseResultType type, TokenStream const &remainingTokens)
+				ParseState(ParseResultType type, TokenStream const& remainingTokens)
 					: m_type(type),
 					m_remainingTokens(remainingTokens)
 				{}
@@ -5873,7 +5873,7 @@ namespace Catch {
 			};
 
 			template<typename T>
-			inline auto convertInto(std::string const &source, T& target) -> ParserResult {
+			inline auto convertInto(std::string const& source, T& target) -> ParserResult {
 				std::stringstream ss;
 				ss << source;
 				ss >> target;
@@ -5882,11 +5882,11 @@ namespace Catch {
 				else
 					return ParserResult::ok(ParseResultType::Matched);
 			}
-			inline auto convertInto(std::string const &source, std::string& target) -> ParserResult {
+			inline auto convertInto(std::string const& source, std::string& target) -> ParserResult {
 				target = source;
 				return ParserResult::ok(ParseResultType::Matched);
 			}
-			inline auto convertInto(std::string const &source, bool &target) -> ParserResult {
+			inline auto convertInto(std::string const& source, bool& target) -> ParserResult {
 				std::string srcLC = source;
 				std::transform(srcLC.begin(), srcLC.end(), srcLC.begin(), [](char c) { return static_cast<char>(::tolower(c)); });
 				if (srcLC == "y" || srcLC == "1" || srcLC == "true" || srcLC == "yes" || srcLC == "on")
@@ -5899,7 +5899,7 @@ namespace Catch {
 			}
 #ifdef CLARA_CONFIG_OPTIONAL_TYPE
 			template<typename T>
-			inline auto convertInto(std::string const &source, CLARA_CONFIG_OPTIONAL_TYPE<T>& target) -> ParserResult {
+			inline auto convertInto(std::string const& source, CLARA_CONFIG_OPTIONAL_TYPE<T>& target) -> ParserResult {
 				T temp;
 				auto result = convertInto(source, temp);
 				if (result)
@@ -5910,10 +5910,10 @@ namespace Catch {
 
 			struct NonCopyable {
 				NonCopyable() = default;
-				NonCopyable(NonCopyable const &) = delete;
-				NonCopyable(NonCopyable &&) = delete;
-				NonCopyable &operator=(NonCopyable const &) = delete;
-				NonCopyable &operator=(NonCopyable &&) = delete;
+				NonCopyable(NonCopyable const&) = delete;
+				NonCopyable(NonCopyable&&) = delete;
+				NonCopyable& operator=(NonCopyable const&) = delete;
+				NonCopyable& operator=(NonCopyable&&) = delete;
 			};
 
 			struct BoundRef : NonCopyable {
@@ -5922,7 +5922,7 @@ namespace Catch {
 				virtual auto isFlag() const -> bool { return false; }
 			};
 			struct BoundValueRefBase : BoundRef {
-				virtual auto setValue(std::string const &arg)->ParserResult = 0;
+				virtual auto setValue(std::string const& arg)->ParserResult = 0;
 			};
 			struct BoundFlagRefBase : BoundRef {
 				virtual auto setFlag(bool flag)->ParserResult = 0;
@@ -5931,24 +5931,24 @@ namespace Catch {
 
 			template<typename T>
 			struct BoundValueRef : BoundValueRefBase {
-				T &m_ref;
+				T& m_ref;
 
-				explicit BoundValueRef(T &ref) : m_ref(ref) {}
+				explicit BoundValueRef(T& ref) : m_ref(ref) {}
 
-				auto setValue(std::string const &arg) -> ParserResult override {
+				auto setValue(std::string const& arg) -> ParserResult override {
 					return convertInto(arg, m_ref);
 				}
 			};
 
 			template<typename T>
 			struct BoundValueRef<std::vector<T>> : BoundValueRefBase {
-				std::vector<T> &m_ref;
+				std::vector<T>& m_ref;
 
-				explicit BoundValueRef(std::vector<T> &ref) : m_ref(ref) {}
+				explicit BoundValueRef(std::vector<T>& ref) : m_ref(ref) {}
 
 				auto isContainer() const -> bool override { return true; }
 
-				auto setValue(std::string const &arg) -> ParserResult override {
+				auto setValue(std::string const& arg) -> ParserResult override {
 					T temp;
 					auto result = convertInto(arg, temp);
 					if (result)
@@ -5958,9 +5958,9 @@ namespace Catch {
 			};
 
 			struct BoundFlagRef : BoundFlagRefBase {
-				bool &m_ref;
+				bool& m_ref;
 
-				explicit BoundFlagRef(bool &ref) : m_ref(ref) {}
+				explicit BoundFlagRef(bool& ref) : m_ref(ref) {}
 
 				auto setFlag(bool flag) -> ParserResult override {
 					m_ref = flag;
@@ -5973,7 +5973,7 @@ namespace Catch {
 				static_assert(std::is_same<ReturnType, ParserResult>::value, "Lambda must return void or clara::ParserResult");
 
 				template<typename L, typename ArgType>
-				static auto invoke(L const &lambda, ArgType const &arg) -> ParserResult {
+				static auto invoke(L const& lambda, ArgType const& arg) -> ParserResult {
 					return lambda(arg);
 				}
 			};
@@ -5981,14 +5981,14 @@ namespace Catch {
 			template<>
 			struct LambdaInvoker<void> {
 				template<typename L, typename ArgType>
-				static auto invoke(L const &lambda, ArgType const &arg) -> ParserResult {
+				static auto invoke(L const& lambda, ArgType const& arg) -> ParserResult {
 					lambda(arg);
 					return ParserResult::ok(ParseResultType::Matched);
 				}
 			};
 
 			template<typename ArgType, typename L>
-			inline auto invokeLambda(L const &lambda, std::string const &arg) -> ParserResult {
+			inline auto invokeLambda(L const& lambda, std::string const& arg) -> ParserResult {
 				ArgType temp{};
 				auto result = convertInto(arg, temp);
 				return !result
@@ -6001,9 +6001,9 @@ namespace Catch {
 				L m_lambda;
 
 				static_assert(UnaryLambdaTraits<L>::isValid, "Supplied lambda must take exactly one argument");
-				explicit BoundLambda(L const &lambda) : m_lambda(lambda) {}
+				explicit BoundLambda(L const& lambda) : m_lambda(lambda) {}
 
-				auto setValue(std::string const &arg) -> ParserResult override {
+				auto setValue(std::string const& arg) -> ParserResult override {
 					return invokeLambda<typename UnaryLambdaTraits<L>::ArgType>(m_lambda, arg);
 				}
 			};
@@ -6015,7 +6015,7 @@ namespace Catch {
 				static_assert(UnaryLambdaTraits<L>::isValid, "Supplied lambda must take exactly one argument");
 				static_assert(std::is_same<typename UnaryLambdaTraits<L>::ArgType, bool>::value, "flags must be boolean");
 
-				explicit BoundFlagLambda(L const &lambda) : m_lambda(lambda) {}
+				explicit BoundFlagLambda(L const& lambda) : m_lambda(lambda) {}
 
 				auto setFlag(bool flag) -> ParserResult override {
 					return LambdaInvoker<typename UnaryLambdaTraits<L>::ReturnType>::invoke(m_lambda, flag);
@@ -6030,10 +6030,10 @@ namespace Catch {
 			public:
 				virtual ~ParserBase() = default;
 				virtual auto validate() const -> Result { return Result::ok(); }
-				virtual auto parse(std::string const& exeName, TokenStream const &tokens) const->InternalParseResult = 0;
+				virtual auto parse(std::string const& exeName, TokenStream const& tokens) const->InternalParseResult = 0;
 				virtual auto cardinality() const -> size_t { return 1; }
 
-				auto parse(Args const &args) const -> InternalParseResult {
+				auto parse(Args const& args) const -> InternalParseResult {
 					return parse(args.exeName(), TokenStream(args));
 				}
 			};
@@ -6042,10 +6042,10 @@ namespace Catch {
 			class ComposableParserImpl : public ParserBase {
 			public:
 				template<typename T>
-				auto operator|(T const &other) const->Parser;
+				auto operator|(T const& other) const->Parser;
 
 				template<typename T>
-				auto operator+(T const &other) const->Parser;
+				auto operator+(T const& other) const->Parser;
 			};
 
 			// Common code and state for Args and Opts
@@ -6057,34 +6057,34 @@ namespace Catch {
 				std::string m_hint;
 				std::string m_description;
 
-				explicit ParserRefImpl(std::shared_ptr<BoundRef> const &ref) : m_ref(ref) {}
+				explicit ParserRefImpl(std::shared_ptr<BoundRef> const& ref) : m_ref(ref) {}
 
 			public:
 				template<typename T>
-				ParserRefImpl(T &ref, std::string const &hint)
+				ParserRefImpl(T& ref, std::string const& hint)
 					: m_ref(std::make_shared<BoundValueRef<T>>(ref)),
 					m_hint(hint)
 				{}
 
 				template<typename LambdaT>
-				ParserRefImpl(LambdaT const &ref, std::string const &hint)
+				ParserRefImpl(LambdaT const& ref, std::string const& hint)
 					: m_ref(std::make_shared<BoundLambda<LambdaT>>(ref)),
 					m_hint(hint)
 				{}
 
-				auto operator()(std::string const &description) -> DerivedT & {
+				auto operator()(std::string const& description) -> DerivedT& {
 					m_description = description;
-					return static_cast<DerivedT &>(*this);
+					return static_cast<DerivedT&>(*this);
 				}
 
-				auto optional() -> DerivedT & {
+				auto optional() -> DerivedT& {
 					m_optionality = Optionality::Optional;
-					return static_cast<DerivedT &>(*this);
+					return static_cast<DerivedT&>(*this);
 				};
 
-				auto required() -> DerivedT & {
+				auto required() -> DerivedT& {
 					m_optionality = Optionality::Required;
-					return static_cast<DerivedT &>(*this);
+					return static_cast<DerivedT&>(*this);
 				};
 
 				auto isOptional() const -> bool {
@@ -6106,14 +6106,14 @@ namespace Catch {
 				std::shared_ptr<BoundValueRefBase> m_ref;
 
 				template<typename LambdaT>
-				static auto makeRef(LambdaT const &lambda) -> std::shared_ptr<BoundValueRefBase> {
+				static auto makeRef(LambdaT const& lambda) -> std::shared_ptr<BoundValueRefBase> {
 					return std::make_shared<BoundLambda<LambdaT>>(lambda);
 				}
 
 			public:
 				ExeName() : m_name(std::make_shared<std::string>("<executable>")) {}
 
-				explicit ExeName(std::string &ref) : ExeName() {
+				explicit ExeName(std::string& ref) : ExeName() {
 					m_ref = std::make_shared<BoundValueRef<std::string>>(ref);
 				}
 
@@ -6123,7 +6123,7 @@ namespace Catch {
 				}
 
 				// The exe name is not parsed out of the normal tokens, but is handled specially
-				auto parse(std::string const&, TokenStream const &tokens) const -> InternalParseResult override {
+				auto parse(std::string const&, TokenStream const& tokens) const -> InternalParseResult override {
 					return InternalParseResult::ok(ParseState(ParseResultType::NoMatch, tokens));
 				}
 
@@ -6147,13 +6147,13 @@ namespace Catch {
 			public:
 				using ParserRefImpl::ParserRefImpl;
 
-				auto parse(std::string const &, TokenStream const &tokens) const -> InternalParseResult override {
+				auto parse(std::string const&, TokenStream const& tokens) const -> InternalParseResult override {
 					auto validationResult = validate();
 					if (!validationResult)
 						return InternalParseResult(validationResult);
 
 					auto remainingTokens = tokens;
-					auto const &token = *remainingTokens;
+					auto const& token = *remainingTokens;
 					if (token.type != TokenType::Argument)
 						return InternalParseResult::ok(ParseState(ParseResultType::NoMatch, remainingTokens));
 
@@ -6168,7 +6168,7 @@ namespace Catch {
 				}
 			};
 
-			inline auto normaliseOpt(std::string const &optName) -> std::string {
+			inline auto normaliseOpt(std::string const& optName) -> std::string {
 #ifdef CATCH_PLATFORM_WINDOWS
 				if (optName[0] == '/')
 					return "-" + optName.substr(1);
@@ -6183,17 +6183,17 @@ namespace Catch {
 
 			public:
 				template<typename LambdaT>
-				explicit Opt(LambdaT const &ref) : ParserRefImpl(std::make_shared<BoundFlagLambda<LambdaT>>(ref)) {}
+				explicit Opt(LambdaT const& ref) : ParserRefImpl(std::make_shared<BoundFlagLambda<LambdaT>>(ref)) {}
 
-				explicit Opt(bool &ref) : ParserRefImpl(std::make_shared<BoundFlagRef>(ref)) {}
+				explicit Opt(bool& ref) : ParserRefImpl(std::make_shared<BoundFlagRef>(ref)) {}
 
 				template<typename LambdaT>
-				Opt(LambdaT const &ref, std::string const &hint) : ParserRefImpl(ref, hint) {}
+				Opt(LambdaT const& ref, std::string const& hint) : ParserRefImpl(ref, hint) {}
 
 				template<typename T>
-				Opt(T &ref, std::string const &hint) : ParserRefImpl(ref, hint) {}
+				Opt(T& ref, std::string const& hint) : ParserRefImpl(ref, hint) {}
 
-				auto operator[](std::string const &optName) -> Opt & {
+				auto operator[](std::string const& optName) -> Opt& {
 					m_optNames.push_back(optName);
 					return *this;
 				}
@@ -6201,7 +6201,7 @@ namespace Catch {
 				auto getHelpColumns() const -> std::vector<HelpColumns> {
 					std::ostringstream oss;
 					bool first = true;
-					for (auto const &opt : m_optNames) {
+					for (auto const& opt : m_optNames) {
 						if (first)
 							first = false;
 						else
@@ -6213,9 +6213,9 @@ namespace Catch {
 					return { { oss.str(), m_description } };
 				}
 
-				auto isMatch(std::string const &optToken) const -> bool {
+				auto isMatch(std::string const& optToken) const -> bool {
 					auto normalisedToken = normaliseOpt(optToken);
-					for (auto const &name : m_optNames) {
+					for (auto const& name : m_optNames) {
 						if (normaliseOpt(name) == normalisedToken)
 							return true;
 					}
@@ -6224,14 +6224,14 @@ namespace Catch {
 
 				using ParserBase::parse;
 
-				auto parse(std::string const&, TokenStream const &tokens) const -> InternalParseResult override {
+				auto parse(std::string const&, TokenStream const& tokens) const -> InternalParseResult override {
 					auto validationResult = validate();
 					if (!validationResult)
 						return InternalParseResult(validationResult);
 
 					auto remainingTokens = tokens;
 					if (remainingTokens && remainingTokens->type == TokenType::Option) {
-						auto const &token = *remainingTokens;
+						auto const& token = *remainingTokens;
 						if (isMatch(token.token)) {
 							if (m_ref->isFlag()) {
 								auto flagRef = static_cast<detail::BoundFlagRefBase*>(m_ref.get());
@@ -6246,7 +6246,7 @@ namespace Catch {
 								++remainingTokens;
 								if (!remainingTokens)
 									return InternalParseResult::runtimeError("Expected argument following " + token.token);
-								auto const &argToken = *remainingTokens;
+								auto const& argToken = *remainingTokens;
 								if (argToken.type != TokenType::Argument)
 									return InternalParseResult::runtimeError("Expected argument following " + token.token);
 								auto result = valueRef->setValue(argToken.token);
@@ -6264,7 +6264,7 @@ namespace Catch {
 				auto validate() const -> Result override {
 					if (m_optNames.empty())
 						return Result::logicError("No options supplied to Opt");
-					for (auto const &name : m_optNames) {
+					for (auto const& name : m_optNames) {
 						if (name.empty())
 							return Result::logicError("Option name cannot be empty");
 #ifdef CATCH_PLATFORM_WINDOWS
@@ -6280,13 +6280,13 @@ namespace Catch {
 			};
 
 			struct Help : Opt {
-				Help(bool &showHelpFlag)
+				Help(bool& showHelpFlag)
 					: Opt([&](bool flag) {
 					showHelpFlag = flag;
 					return ParserResult::ok(ParseResultType::ShortCircuitAll);
-				})
+						})
 				{
-					static_cast<Opt &>(*this)
+					static_cast<Opt&>(*this)
 						("display usage information")
 						["-?"]["-h"]["--help"]
 						.optional();
@@ -6299,52 +6299,52 @@ namespace Catch {
 				std::vector<Opt> m_options;
 				std::vector<Arg> m_args;
 
-				auto operator|=(ExeName const &exeName) -> Parser & {
+				auto operator|=(ExeName const& exeName) -> Parser& {
 					m_exeName = exeName;
 					return *this;
 				}
 
-				auto operator|=(Arg const &arg) -> Parser & {
+				auto operator|=(Arg const& arg) -> Parser& {
 					m_args.push_back(arg);
 					return *this;
 				}
 
-				auto operator|=(Opt const &opt) -> Parser & {
+				auto operator|=(Opt const& opt) -> Parser& {
 					m_options.push_back(opt);
 					return *this;
 				}
 
-				auto operator|=(Parser const &other) -> Parser & {
+				auto operator|=(Parser const& other) -> Parser& {
 					m_options.insert(m_options.end(), other.m_options.begin(), other.m_options.end());
 					m_args.insert(m_args.end(), other.m_args.begin(), other.m_args.end());
 					return *this;
 				}
 
 				template<typename T>
-				auto operator|(T const &other) const -> Parser {
+				auto operator|(T const& other) const -> Parser {
 					return Parser(*this) |= other;
 				}
 
 				// Forward deprecated interface with '+' instead of '|'
 				template<typename T>
-				auto operator+=(T const &other) -> Parser & { return operator|=(other); }
+				auto operator+=(T const& other) -> Parser& { return operator|=(other); }
 				template<typename T>
-				auto operator+(T const &other) const -> Parser { return operator|(other); }
+				auto operator+(T const& other) const -> Parser { return operator|(other); }
 
 				auto getHelpColumns() const -> std::vector<HelpColumns> {
 					std::vector<HelpColumns> cols;
-					for (auto const &o : m_options) {
+					for (auto const& o : m_options) {
 						auto childCols = o.getHelpColumns();
 						cols.insert(cols.end(), childCols.begin(), childCols.end());
 					}
 					return cols;
 				}
 
-				void writeToStream(std::ostream &os) const {
+				void writeToStream(std::ostream& os) const {
 					if (!m_exeName.name().empty()) {
 						os << "usage:\n" << "  " << m_exeName.name() << " ";
 						bool required = true, first = true;
-						for (auto const &arg : m_args) {
+						for (auto const& arg : m_args) {
 							if (first)
 								first = false;
 							else
@@ -6367,12 +6367,12 @@ namespace Catch {
 					auto rows = getHelpColumns();
 					size_t consoleWidth = CATCH_CLARA_CONFIG_CONSOLE_WIDTH;
 					size_t optWidth = 0;
-					for (auto const &cols : rows)
+					for (auto const& cols : rows)
 						optWidth = (std::max)(optWidth, cols.left.size() + 2);
 
 					optWidth = (std::min)(optWidth, consoleWidth / 2);
 
-					for (auto const &cols : rows) {
+					for (auto const& cols : rows) {
 						auto row =
 							TextFlow::Column(cols.left).width(optWidth).indent(2) +
 							TextFlow::Spacer(4) +
@@ -6381,18 +6381,18 @@ namespace Catch {
 					}
 				}
 
-				friend auto operator<<(std::ostream &os, Parser const &parser) -> std::ostream& {
+				friend auto operator<<(std::ostream& os, Parser const& parser) -> std::ostream& {
 					parser.writeToStream(os);
 					return os;
 				}
 
 				auto validate() const -> Result override {
-					for (auto const &opt : m_options) {
+					for (auto const& opt : m_options) {
 						auto result = opt.validate();
 						if (!result)
 							return result;
 					}
-					for (auto const &arg : m_args) {
+					for (auto const& arg : m_args) {
 						auto result = arg.validate();
 						if (!result)
 							return result;
@@ -6402,7 +6402,7 @@ namespace Catch {
 
 				using ParserBase::parse;
 
-				auto parse(std::string const& exeName, TokenStream const &tokens) const -> InternalParseResult override {
+				auto parse(std::string const& exeName, TokenStream const& tokens) const -> InternalParseResult override {
 
 					struct ParserInfo {
 						ParserBase const* parser = nullptr;
@@ -6415,8 +6415,8 @@ namespace Catch {
 
 					{
 						size_t i = 0;
-						for (auto const &opt : m_options) parseInfos[i++].parser = &opt;
-						for (auto const &arg : m_args) parseInfos[i++].parser = &arg;
+						for (auto const& opt : m_options) parseInfos[i++].parser = &opt;
+						for (auto const& arg : m_args) parseInfos[i++].parser = &arg;
 					}
 
 					m_exeName.set(exeName);
@@ -6426,7 +6426,7 @@ namespace Catch {
 						bool tokenParsed = false;
 
 						for (size_t i = 0; i < totalParsers; ++i) {
-							auto&  parseInfo = parseInfos[i];
+							auto& parseInfo = parseInfos[i];
 							if (parseInfo.parser->cardinality() == 0 || parseInfo.count < parseInfo.parser->cardinality()) {
 								result = parseInfo.parser->parse(exeName, result.value().remainingTokens());
 								if (!result)
@@ -6451,8 +6451,8 @@ namespace Catch {
 
 			template<typename DerivedT>
 			template<typename T>
-			auto ComposableParserImpl<DerivedT>::operator|(T const &other) const -> Parser {
-				return Parser() | static_cast<DerivedT const &>(*this) | other;
+			auto ComposableParserImpl<DerivedT>::operator|(T const& other) const -> Parser {
+				return Parser() | static_cast<DerivedT const&>(*this) | other;
 			}
 		} // namespace detail
 
@@ -7069,7 +7069,7 @@ namespace Catch {
 		IResultCapture* m_resultCapture = nullptr;
 	};
 
-	IMutableContext *IMutableContext::currentContext = nullptr;
+	IMutableContext* IMutableContext::currentContext = nullptr;
 
 	void IMutableContext::createContext()
 	{
@@ -7223,7 +7223,7 @@ namespace Catch {
 
 	ITransientExpression::~ITransientExpression() = default;
 
-	void formatReconstructedExpression(std::ostream &os, std::string const& lhs, StringRef op, std::string const& rhs) {
+	void formatReconstructedExpression(std::ostream& os, std::string const& lhs, StringRef op, std::string const& rhs) {
 		if (lhs.size() + rhs.size() < 40 &&
 			lhs.find('\n') == std::string::npos &&
 			rhs.find('\n') == std::string::npos)
@@ -7285,7 +7285,7 @@ namespace Catch {
 			@try {
 				return tryTranslators();
 			}
-			@catch (NSException *exception) {
+			@catch (NSException* exception) {
 				return Catch::Detail::stringify([exception description]);
 			}
 #else
@@ -7339,7 +7339,7 @@ namespace Catch {
 
 namespace {
 	// Report the error condition
-	void reportFatal(char const * const message) {
+	void reportFatal(char const* const message) {
 		Catch::getCurrentContext().getResultCapture()->handleFatalErrorCondition(message);
 	}
 }
@@ -7421,7 +7421,7 @@ namespace Catch {
 	};
 
 	void FatalConditionHandler::handleSignal(int sig) {
-		char const * name = "<unknown signal>";
+		char const* name = "<unknown signal>";
 		for (auto const& def : signalDefs) {
 			if (sig == def.id) {
 				name = def.name;
@@ -8653,7 +8653,7 @@ namespace Catch {
 		return *m_reporter;
 	}
 
-	void RunContext::assertionEnded(AssertionResult const & result) {
+	void RunContext::assertionEnded(AssertionResult const& result) {
 		if (result.getResultType() == ResultWas::Ok) {
 			m_totals.assertions.passed++;
 			m_lastAssertionPassed = true;
@@ -8682,7 +8682,7 @@ namespace Catch {
 		m_lastAssertionInfo.capturedExpression = "{Unknown expression after the reported line}"_sr;
 	}
 
-	bool RunContext::sectionStarted(SectionInfo const & sectionInfo, Counts & assertions) {
+	bool RunContext::sectionStarted(SectionInfo const& sectionInfo, Counts& assertions) {
 		ITracker& sectionTracker = SectionTracker::acquire(m_trackerContext, TestCaseTracking::NameAndLocation(sectionInfo.name, sectionInfo.lineInfo));
 		if (!sectionTracker.isOpen())
 			return false;
@@ -8709,7 +8709,7 @@ namespace Catch {
 		return true;
 	}
 
-	void RunContext::sectionEnded(SectionEndInfo const & endInfo) {
+	void RunContext::sectionEnded(SectionEndInfo const& endInfo) {
 		Counts assertions = m_totals.assertions - endInfo.prevAssertions;
 		bool missingAssertions = testForMissingAssertions(assertions);
 
@@ -8722,7 +8722,7 @@ namespace Catch {
 		m_messages.clear();
 	}
 
-	void RunContext::sectionEndedEarly(SectionEndInfo const & endInfo) {
+	void RunContext::sectionEndedEarly(SectionEndInfo const& endInfo) {
 		if (m_unfinishedSections.empty())
 			m_activeSections.back()->fail();
 		else
@@ -8738,11 +8738,11 @@ namespace Catch {
 		m_reporter->benchmarkEnded(stats);
 	}
 
-	void RunContext::pushScopedMessage(MessageInfo const & message) {
+	void RunContext::pushScopedMessage(MessageInfo const& message) {
 		m_messages.push_back(message);
 	}
 
-	void RunContext::popScopedMessage(MessageInfo const & message) {
+	void RunContext::popScopedMessage(MessageInfo const& message) {
 		m_messages.erase(std::remove(m_messages.begin(), m_messages.end(), message), m_messages.end());
 	}
 
@@ -8752,7 +8752,7 @@ namespace Catch {
 			: std::string();
 	}
 
-	const AssertionResult * RunContext::getLastResult() const {
+	const AssertionResult* RunContext::getLastResult() const {
 		return &(*m_lastResult);
 	}
 
@@ -8812,7 +8812,7 @@ namespace Catch {
 		return m_totals.assertions.failed == static_cast<std::size_t>(m_config->abortAfter());
 	}
 
-	void RunContext::runCurrentTest(std::string & redirectedCout, std::string & redirectedCerr) {
+	void RunContext::runCurrentTest(std::string& redirectedCout, std::string& redirectedCerr) {
 		auto const& testCaseInfo = m_activeTestCase->getTestCaseInfo();
 		SectionInfo testCaseSection(testCaseInfo.lineInfo, testCaseInfo.name, testCaseInfo.description);
 		m_reporter->sectionStarting(testCaseSection);
@@ -8883,7 +8883,7 @@ namespace Catch {
 		AssertionInfo const& info,
 		ITransientExpression const& expr,
 		AssertionReaction& reaction
-	) {
+		) {
 		m_reporter->assertionStarting(info);
 
 		bool negated = isFalseTest(info.resultDisposition);
@@ -8903,9 +8903,9 @@ namespace Catch {
 		}
 	}
 	void RunContext::reportExpr(
-		AssertionInfo const &info,
+		AssertionInfo const& info,
 		ResultWas::OfType resultType,
-		ITransientExpression const *expr,
+		ITransientExpression const* expr,
 		bool negated) {
 
 		m_lastAssertionInfo = info;
@@ -8922,7 +8922,7 @@ namespace Catch {
 		ResultWas::OfType resultType,
 		StringRef const& message,
 		AssertionReaction& reaction
-	) {
+		) {
 		m_reporter->assertionStarting(info);
 
 		m_lastAssertionInfo = info;
@@ -8937,7 +8937,7 @@ namespace Catch {
 	void RunContext::handleUnexpectedExceptionNotThrown(
 		AssertionInfo const& info,
 		AssertionReaction& reaction
-	) {
+		) {
 		handleNonExpr(info, Catch::ResultWas::DidntThrowException, reaction);
 	}
 
@@ -8945,7 +8945,7 @@ namespace Catch {
 		AssertionInfo const& info,
 		std::string const& message,
 		AssertionReaction& reaction
-	) {
+		) {
 		m_lastAssertionInfo = info;
 
 		AssertionResultData data(ResultWas::ThrewException, LazyExpression(false));
@@ -8962,7 +8962,7 @@ namespace Catch {
 
 	void RunContext::handleIncomplete(
 		AssertionInfo const& info
-	) {
+		) {
 		m_lastAssertionInfo = info;
 
 		AssertionResultData data(ResultWas::ThrewException, LazyExpression(false));
@@ -8971,10 +8971,10 @@ namespace Catch {
 		assertionEnded(assertionResult);
 	}
 	void RunContext::handleNonExpr(
-		AssertionInfo const &info,
+		AssertionInfo const& info,
 		ResultWas::OfType resultType,
-		AssertionReaction &reaction
-	) {
+		AssertionReaction& reaction
+		) {
 		m_lastAssertionInfo = info;
 
 		AssertionResultData data(resultType, LazyExpression(false));
@@ -9057,7 +9057,7 @@ namespace Catch {
 		void showHelp() const;
 		void libIdentify();
 
-		int applyCommandLine(int argc, char const * const * argv);
+		int applyCommandLine(int argc, char const* const* argv);
 
 		void useConfigData(ConfigData const& configData);
 
@@ -9096,7 +9096,7 @@ namespace Catch {
 		Version(unsigned int _majorVersion,
 			unsigned int _minorVersion,
 			unsigned int _patchNumber,
-			char const * const _branchName,
+			char const* const _branchName,
 			unsigned int _buildNumber);
 
 		unsigned int const majorVersion;
@@ -9104,7 +9104,7 @@ namespace Catch {
 		unsigned int const patchNumber;
 
 		// buildNumber is only used if branchName is not null
-		char const * const branchName;
+		char const* const branchName;
 		unsigned int const buildNumber;
 
 		friend std::ostream& operator << (std::ostream& os, Version const& version);
@@ -9258,7 +9258,7 @@ namespace Catch {
 			<< std::left << std::setw(16) << "version: " << libraryVersion() << std::endl;
 	}
 
-	int Session::applyCommandLine(int argc, char const * const * argv) {
+	int Session::applyCommandLine(int argc, char const* const* argv) {
 		if (m_startupExceptions)
 			return 1;
 
@@ -9298,7 +9298,7 @@ namespace Catch {
 #if defined(CATCH_CONFIG_WCHAR) && defined(WIN32) && defined(UNICODE)
 	int Session::run(int argc, wchar_t* const argv[]) {
 
-		char **utf8Argv = new char *[argc];
+		char** utf8Argv = new char* [argc];
 
 		for (int i = 0; i < argc; ++i) {
 			int bufSize = WideCharToMultiByte(CP_UTF8, 0, argv[i], -1, NULL, 0, NULL, NULL);
@@ -9459,7 +9459,7 @@ namespace Catch {
 
 			struct OutputDebugWriter {
 
-				void operator()(std::string const&str) {
+				void operator()(std::string const& str) {
 					writeToDebugConsole(str);
 				}
 			};
@@ -9516,7 +9516,7 @@ namespace Catch {
 
    ///////////////////////////////////////////////////////////////////////////
 
-	auto makeStream(StringRef const &filename) -> IStream const* {
+	auto makeStream(StringRef const& filename) -> IStream const* {
 		if (filename.empty())
 			return new detail::CoutStream();
 		else if (filename[0] == '%') {
@@ -9793,7 +9793,7 @@ namespace Catch {
 // start catch_tag_alias.cpp
 
 namespace Catch {
-	TagAlias::TagAlias(std::string const & _tag, SourceLineInfo _lineInfo) : tag(_tag), lineInfo(_lineInfo) {}
+	TagAlias::TagAlias(std::string const& _tag, SourceLineInfo _lineInfo) : tag(_tag), lineInfo(_lineInfo) {}
 }
 // end catch_tag_alias.cpp
 // start catch_tag_alias_autoregistrar.cpp
@@ -10661,7 +10661,7 @@ namespace Catch {
 			};
 		}
 
-		std::string rawMemoryToString(const void *object, std::size_t size) {
+		std::string rawMemoryToString(const void* object, std::size_t size) {
 			// Reverse order for little endian architectures
 			int i = 0, end = static_cast<int>(size), inc = 1;
 			if (Endianness::which() == Endianness::Little) {
@@ -10669,7 +10669,7 @@ namespace Catch {
 				end = inc = -1;
 			}
 
-			unsigned char const *bytes = static_cast<unsigned char const *>(object);
+			unsigned char const* bytes = static_cast<unsigned char const*>(object);
 			ReusableStringStream rss;
 			rss << "0x" << std::setfill('0') << std::hex;
 			for (; i != end; i += inc)
@@ -10755,7 +10755,7 @@ namespace Catch {
 		}
 	}
 #ifdef CATCH_CONFIG_WCHAR
-	std::string StringMaker<wchar_t const*>::convert(wchar_t const * str) {
+	std::string StringMaker<wchar_t const*>::convert(wchar_t const* str) {
 		if (str) {
 			return ::Catch::Detail::stringify(std::wstring{ str });
 		}
@@ -10763,7 +10763,7 @@ namespace Catch {
 			return{ "{null string}" };
 		}
 	}
-	std::string StringMaker<wchar_t *>::convert(wchar_t * str) {
+	std::string StringMaker<wchar_t*>::convert(wchar_t* str) {
 		if (str) {
 			return ::Catch::Detail::stringify(std::wstring{ str });
 		}
@@ -10940,7 +10940,7 @@ namespace Catch {
 	(unsigned int _majorVersion,
 		unsigned int _minorVersion,
 		unsigned int _patchNumber,
-		char const * const _branchName,
+		char const* const _branchName,
 		unsigned int _buildNumber)
 		: majorVersion(_majorVersion),
 		minorVersion(_minorVersion),
@@ -11317,12 +11317,12 @@ namespace Catch {
 		return std::string(buffer);
 	}
 
-	TestEventListenerBase::TestEventListenerBase(ReporterConfig const & _config)
+	TestEventListenerBase::TestEventListenerBase(ReporterConfig const& _config)
 		:StreamingReporterBase(_config) {}
 
-	void TestEventListenerBase::assertionStarting(AssertionInfo const &) {}
+	void TestEventListenerBase::assertionStarting(AssertionInfo const&) {}
 
-	bool TestEventListenerBase::assertionEnded(AssertionStats const &) {
+	bool TestEventListenerBase::assertionEnded(AssertionStats const&) {
 		return false;
 	}
 
@@ -12266,7 +12266,7 @@ namespace Catch {
 #endif
 
 			char timeStamp[timeStampSize];
-			const char * const fmt = "%Y-%m-%dT%H:%M:%SZ";
+			const char* const fmt = "%Y-%m-%dT%H:%M:%SZ";
 
 #ifdef _MSC_VER
 			std::strftime(timeStamp, timeStampSize, fmt, &timeInfo);
@@ -12276,7 +12276,7 @@ namespace Catch {
 			return std::string(timeStamp);
 		}
 
-		std::string fileNameTag(const std::vector<std::string> &tags) {
+		std::string fileNameTag(const std::vector<std::string>& tags) {
 			auto it = std::find_if(begin(tags),
 				end(tags),
 				[](std::string const& tag) {return tag.front() == '#'; });
@@ -12801,10 +12801,10 @@ namespace Catch {
 
 #if defined(CATCH_CONFIG_WCHAR) && defined(WIN32) && defined(_UNICODE) && !defined(DO_NOT_USE_WMAIN)
 // Standard C/C++ Win32 Unicode wmain entry point
-extern "C" int wmain(int argc, wchar_t * argv[], wchar_t *[]) {
+extern "C" int wmain(int argc, wchar_t* argv[], wchar_t* []) {
 #else
 // Standard C/C++ main entry point
-int main(int argc, char * argv[]) {
+int main(int argc, char* argv[]) {
 #endif
 
 	return Catch::Session().run(argc, argv);
@@ -12813,9 +12813,9 @@ int main(int argc, char * argv[]) {
 #else // __OBJC__
 
 // Objective-C entry point
-int main(int argc, char * const argv[]) {
+int main(int argc, char* const argv[]) {
 #if !CATCH_ARC_ENABLED
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc]init];
 #endif
 
 	Catch::registerTestMethods();
@@ -13107,5 +13107,3 @@ using Catch::Detail::Approx;
 // end catch_reenable_warnings.h
 // end catch.hpp
 #endif // TWOBLUECUBES_SINGLE_INCLUDE_CATCH_HPP_INCLUDED
-
-

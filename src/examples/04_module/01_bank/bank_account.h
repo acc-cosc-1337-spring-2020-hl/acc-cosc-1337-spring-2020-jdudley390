@@ -9,7 +9,7 @@ class BankAccount
 public:
 	BankAccount() = default;
 	explicit BankAccount(int b) : balance{ b } {}; //BankAccount is constructor
-	int get_balance()const {return balance; } //used const ot keep integrity of private class member
+	virtual int get_balance()const {return balance; } //used const ot keep integrity of private class member
 	void deposit(int amount);
 	void withdraw(int amount);
 	void open(int amount);
