@@ -23,22 +23,14 @@ void TicTacToe::start_game(string first_player)
 
 void TicTacToe::mark_board(int position)
 {
-	if (player == "") 
+	if (player == "")
 	{
 		throw Error("Must start game first.");
 	}
 
 	if (position >= 1 && position <= 9)
 	{
-		pegs[position - 1] = player;
 		set_next_player();
-		
-	}
-
-	else
-
-	{
-		throw Error("Must be between 1 and 9!");
 	}
 }
 

@@ -9,3 +9,10 @@
 442	667	607486842	src/examples/04_module/01_bank/ex_04_01_exe.exe	bc3b387238b8bf36
 1	598	607567756	src/examples/04_module/01_bank/CMakeFiles/ex_04_01_exe.dir/main.cpp.obj	4c469c990637300c
 599	718	607567756	src/examples/04_module/01_bank/ex_04_01_exe.exe	bc3b387238b8bf36
+6	412	607579245	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe_4.cpp.obj	f3cce70079ca5dd4
+9	413	607579245	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe_manager.cpp.obj	f29c2702603ad55c
+7	413	607579245	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe_data.cpp.obj	620dc86c1895d8c8
+4	414	607579245	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe_3.cpp.obj	f843b583942b4e00
+3	313	607579309	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe.cpp.obj	d8723343a6e78a95
+0	327	607579309	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/main.cpp.obj	c5e1911b609e41c0
+327	546	607579309	src/homework/tic_tac_toe/tic_tac_toe_exe.exe	86c6abe8872941d1

@@ -15,7 +15,7 @@ public:
 	void mark_board(int position);
 	string get_player() const;
 	void display_board()const;
-	string get_winner(return winner);
+	string get_winner() { return winner; };
 private:
 	bool check_column_win();
 	bool check_row_win();
