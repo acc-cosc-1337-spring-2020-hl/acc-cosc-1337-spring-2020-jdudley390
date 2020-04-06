@@ -57,6 +57,7 @@ TEST_CASE("Test start game with O game flow")
 	REQUIRE(game.get_player() == "X");
 
 }
+/*
 TEST_CASE("Test game over when board full")
 {
 	TicTacToe game;
@@ -81,7 +82,7 @@ TEST_CASE("Test game over when board full")
 	game.mark_board(9);
 	REQUIRE(game.game_over() == true);
 
-}
+}*/
 
 TEST_CASE("Test win by first column")
 {

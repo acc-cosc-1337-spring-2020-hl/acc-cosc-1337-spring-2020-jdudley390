@@ -32,6 +32,8 @@ void TicTacToe::mark_board(int position)
 	{
 		set_next_player();
 	}
+
+	pegs[position - 1] = player;
 }
 
 void TicTacToe::set_next_player()
@@ -156,6 +158,17 @@ string Error::get_message()
 
 bool TicTacToe::game_over()
 {
-	return check_board_full();
+	if (check_column_win() || check_row_win() || check_diagnol_win()) 
+	{
+		set_winner();
+		return true;
+	}
+	else if (check_board_full()) 
+	{
+		winner = "C";
+		return true;
+	}
+
+	return false;
 }
 
