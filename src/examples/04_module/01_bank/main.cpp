@@ -16,7 +16,7 @@ int main()
 	unique_ptr<BankAccount> c = make_unique<CheckingAccount>(100);
 	//parent of s is the main from
 	vector<unique_ptr<BankAccount>> acts;// { std::move(s), std::move(c) };//create vector of unique pointers
-	//move make the vector the parent of the object
+	//move makes the vector the parent of the object
 	//if you don't use move compiler doesn't know how to set the parent for it
 	//must you move to be able to change frame
 	acts.push_back(std::move(s));

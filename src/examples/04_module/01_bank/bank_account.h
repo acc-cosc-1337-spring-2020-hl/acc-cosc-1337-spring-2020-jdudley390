@@ -8,8 +8,10 @@ class BankAccount
 {
 public:
 	BankAccount() = default;
-	explicit BankAccount(int b) : balance{ b } {}; //BankAccount is constructor
-	virtual int get_balance()const {return balance; } //used const ot keep integrity of private class member
+	explicit BankAccount(int b) : balance{ b } {} //BankAccount is constructor
+	virtual int get_balance()const = 0; //virtual functions let you decide which class to work with used const ot keep integrity of private class member
+	//^^ pure virtual function would be set to 0, making and abstract class
+	//must have get_balance function in your classes or it will throw an error
 	void deposit(int amount);
 	void withdraw(int amount);
 	void open(int amount);
