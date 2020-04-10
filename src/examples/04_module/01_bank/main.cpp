@@ -4,27 +4,37 @@
 #include<vector>
 #include<functional>
 #include<memory>
+#include "atm.h"
+#include "customer.h"
 using std::cout; using std::vector; using std::cin;
 using std::unique_ptr; using std::make_unique;
 
 
 int main()
 {
+
 	
 	//declare unique pointer    create instance with make_unique
 	unique_ptr<BankAccount> s = make_unique<SavingsAccount>(100); //2 unique pointers one of checking one of saving
 	unique_ptr<BankAccount> c = make_unique<CheckingAccount>(100);
 	//parent of s is the main from
+	
 	vector<unique_ptr<BankAccount>> acts;// { std::move(s), std::move(c) };//create vector of unique pointers
 	//move makes the vector the parent of the object
 	//if you don't use move compiler doesn't know how to set the parent for it
 	//must you move to be able to change frame
-	acts.push_back(std::move(s));
+	acts.push_back(std::move(s)); //unique pointer only has one parent. can only be ref. by one object at a time
 	acts.push_back(std::move(c));
-	for (auto &account : acts)
-	{
-		 cout << account->get_balance() << "\n";
-	}
+	
+	Customer cust(acts);
+	ATM atm(cust);
+	cout << atm;
+	 
+	//for (auto &account : acts)
+	//{
+		 //cout << account->get_balance() << "\n";
+	//}
+
 	return 0;
 }
 

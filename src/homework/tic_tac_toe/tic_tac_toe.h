@@ -16,6 +16,8 @@ public:
 	string get_player() const;
 	void display_board()const;
 	string get_winner() { return winner; };
+	friend std::ostream& operator<<(std::ostream& out, const TicTacToe& t);
+	friend std::istream& operator>>(std::istream& in, TicTacToe& t);
 private:
 	bool check_column_win();
 	bool check_row_win();

@@ -17,8 +17,8 @@ public:
 	void open(int amount);
 	double get_rate() const { return rate; }
 	friend void display_balance(const BankAccount& b);
-	friend std::ostream& operator<<(std::ostream& out, const BankAccount& b);
-	friend std::istream& operator>>(std::istream& in, BankAccount& b);
+	friend std::ostream& operator<<(std::ostream& out, const BankAccount& b); //ostream is the cout opertor, changes it to word "out"
+	friend std::istream& operator>>(std::istream& in, BankAccount& b);			//istream is the cout opertor, changes it to word "in"
 
 protected:
 	int balance{ 0 };
