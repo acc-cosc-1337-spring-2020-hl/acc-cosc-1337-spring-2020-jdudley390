@@ -142,14 +142,6 @@ string TicTacToe::get_player() const
 	return player;
 }
 
-void TicTacToe::display_board() const
-{
-	for(int i = 0; i <= 9; i += 3)
-	{
-		std::cout << pegs[i] << "|" << pegs[i+1] << "|" <<pegs[i+2] << "\n";
-	}
-}
-
 // Error Class
 string Error::get_message()
 {
@@ -172,3 +164,21 @@ bool TicTacToe::game_over()
 	return false;
 }
 
+std::ostream & operator<<(std::ostream & out, const TicTacToe & game)
+{
+	out << "\n";
+
+	for (std::size_t i = 0; i < 9; i += 3) {
+		out << game.pegs[i] << " | " << game.pegs[i + 1] << " | " << game.pegs[i + 2] << "\n";
+	}
+	return out;
+}
+
+std::istream & operator>>(std::istream & in, TicTacToe & game)
+{
+	int board_selection;
+	std::cout << "Mark the board using 1-9 \n";
+	in >> board_selection;
+	game.mark_board(board_selection);
+	return in;
+}
