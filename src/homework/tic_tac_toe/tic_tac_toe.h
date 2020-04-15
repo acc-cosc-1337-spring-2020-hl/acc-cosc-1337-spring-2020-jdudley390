@@ -10,6 +10,8 @@ using std::string; using std::vector;
 class TicTacToe
 {
 public:
+	TicTacToe() = default;
+	TicTacToe::TicTacToe(int size) : board_size(size * size) {};
 	bool game_over();
 	void start_game(string first_player);
 	void mark_board(int position);
@@ -17,6 +19,11 @@ public:
 	string get_winner() { return winner; };
 	friend std::ostream& operator<<(std::ostream& out, const TicTacToe& t);
 	friend std::istream& operator>>(std::istream& in, TicTacToe& t);
+protected: 
+	int pegs();
+	virtual bool check_column_win();
+	virtual bool check_row_win();
+	virtual bool check_diagnol_win();
 private:
 	bool check_column_win();
 	bool check_row_win();
@@ -24,10 +31,12 @@ private:
 	void set_winner();
 	void set_next_player();
 	bool check_board_full();
+	vector<int> board_size;
 	string player;
 	string winner;
 	std::vector<string> pegs{ 9, " " };
 	void clear_board();
+
 };
 
 class Error

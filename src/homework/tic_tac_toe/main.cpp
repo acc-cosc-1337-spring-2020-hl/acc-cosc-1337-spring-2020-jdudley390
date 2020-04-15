@@ -33,7 +33,7 @@ int main()
 
 		manager.save_game(game);
 		first_p = "";
-		cout << "If you want to play another game press Enter if not enter 1";
+		cout << "If you want to play another game press [Enter], if not enter 1";
 		cin >> user_choice;
 	}
 
