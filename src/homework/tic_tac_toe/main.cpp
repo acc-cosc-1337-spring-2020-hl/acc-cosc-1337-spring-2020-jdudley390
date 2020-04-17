@@ -1,16 +1,35 @@
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
 #include "tic_tac_toe_manager.h"
 using std::cout;
 using std::cin;
 
 int main()
 {
+	int board_size = 1;
 	string first_p = "";
 	int user_choice = 0;
 	TicTacToe_Manager manager;
-	TicTacToe game;
-	while (user_choice != 1)
+	TicTacToe3 game1;
+	TicTacToe4 game2;
+	vector<reference_wrapper<TicTacToe>> games{ game1, game2 };
+	do
 	{
+		cout << "Enter 1 if you want to play a 3x3 tictactoe game or enter 2 to play a 4x4 default is 3x3";
+		cin >> board_size;
+		if (board_size == 1)
+		{
+			manager.games.push_back(games.at(0));
+			TicTacToe3 game1;
+		}
+		else if (board_size == 2)
+		{
+			manager.games.push_back(games.at(1));
+			TicTacToe4 game2;
+		}
+		
+		
 		do
 		{
 			try
