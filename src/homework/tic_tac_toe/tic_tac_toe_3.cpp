@@ -9,7 +9,7 @@ Win by column if and return true if
 else
 false
 */
-bool TicTacToe::check_column_win()
+bool TicTacToe3::check_column_win()
 {
 	if (pegs[0] == player && pegs[3] == player && pegs[6] == player)
 	{
@@ -37,7 +37,7 @@ Win by row if
 3,4,5 are equal
 6,7,8 are equal
 */
-bool TicTacToe::check_row_win()
+bool TicTacToe3::check_row_win()
 {
 	if (pegs[0] == player && pegs[1] == player && pegs[2] == player)
 	{
@@ -66,7 +66,7 @@ Win diagonally
 3 4 5
 6 7 8
 */
-bool TicTacToe::check_diagnol_win()
+bool TicTacToe3::check_diagnol_win()
 {
 	if (pegs[0] == player && pegs[4] == player && pegs[8] == player)
 	{

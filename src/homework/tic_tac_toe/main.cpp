@@ -1,15 +1,17 @@
-#include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
-#include "tic_tac_toe_manager.h"
+#include<iostream>
 #include<functional>
-using std::cout;
-using std::cin;
+
+using std::cout; using std::cin; using std::string;
 
 int main()
 {
+	TicTacToe_Manager manager;
 	string cont;
 	std::vector<std::reference_wrapper<TicTacToe>> games;
+
 	do
 	{
 		int game_type;
@@ -44,7 +46,10 @@ int main()
 			{
 				cout << e.get_message();
 			}
-		} int choice = 1;
+		}
+
+		int choice = 1;
+
 		do
 		{
 			try
@@ -69,4 +74,6 @@ int main()
 	} while (cont == "Y");
 
 	cout << manager;
+
+	return 0;
 }
