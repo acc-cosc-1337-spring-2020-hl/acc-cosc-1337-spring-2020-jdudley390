@@ -1,43 +1,79 @@
-#include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
-using std::cout;
-using std::cin;
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+#include<iostream>
+#include<functional>
+
+using std::cout; using std::cin; using std::string;
 
 int main()
 {
-	string first_p = "";
-	int user_choice = 0;
 	TicTacToe_Manager manager;
-	TicTacToe game;
-	while (user_choice != 1)
+	string cont;
+	std::vector<std::reference_wrapper<TicTacToe>> games;
+
+	do
 	{
+		int game_type;
+		cout << "\nTictactoe 3 or 4?";
+		cin >> game_type;
+		TicTacToe3 game3;
+		TicTacToe4 game4;
+
+		if (game_type == 3)
+		{
+			games.push_back(game3);
+		}
+		else if (game_type == 4)
+		{
+			games.push_back(game4);
+		}
+
+		std::reference_wrapper<TicTacToe> game = games.back();
+
+		string player = "Y";
+
+		while (!(player == "O" || player == "X"))
+		{
+			try
+			{
+				cout << "Enter player: ";
+				cin >> player;
+
+				game.get().start_game(player);
+			}
+			catch (Error e)
+			{
+				cout << e.get_message();
+			}
+		}
+
+		int choice = 1;
+
 		do
 		{
 			try
 			{
-				cout << "Choose X or O for first player: ";
-				cin >> first_p;
-				game.start_game(first_p);
+				cin >> game.get();
+				cout << game.get();
 			}
-			catch (Error b)
+			catch (Error e)
 			{
-				cout << b.get_message();
+				cout << e.get_message();
 			}
-		} while (first_p != "X" && first_p != "O");
-		do
-		{
-			cin >> game;
-			cout << game;
-			
-		} while (!(game.game_over() == true));
 
-		manager.save_game(game);
-		first_p = "";
-		cout << "If you want to play another game press [Enter], if not enter 1";
-		cin >> user_choice;
-	}
+		} while (!game.get().game_over());
 
-	cout << game;
+		manager.save_game(game.get());
+
+		cout << "\nWinner: " << game.get().get_winner() << "\n";
+
+		cout << "Enter Y to play again: ";
+		cin >> cont;
+
+	} while (cont == "Y");
+
+	cout << manager;
 
 	return 0;
 }
