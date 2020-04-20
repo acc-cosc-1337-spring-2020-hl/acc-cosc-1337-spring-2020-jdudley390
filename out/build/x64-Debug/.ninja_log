@@ -160,3 +160,7 @@
 4	352	608789061	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe_3.cpp.obj	f843b583942b4e00
 0	354	608789061	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe_4.cpp.obj	f3cce70079ca5dd4
 6	358	608789061	src/homework/tic_tac_toe/CMakeFiles/tic_tac_toe_exe.dir/tic_tac_toe.cpp.obj	d8723343a6e78a95
+0	769	609041288	src/examples/11_module/02_dynamic_memory/CMakeFiles/ex_11_02_exe.dir/main.cpp.obj	d912fb2592b300ae
+769	969	609041288	src/examples/11_module/02_dynamic_memory/ex_11_02_exe.exe	c88c33c48c472f60
+0	634	609042103	src/examples/11_module/02_dynamic_memory/CMakeFiles/ex_11_02_exe.dir/main.cpp.obj	d912fb2592b300ae
+634	731	609042104	src/examples/11_module/02_dynamic_memory/ex_11_02_exe.exe	c88c33c48c472f60

@@ -1,11 +1,18 @@
 {
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64",
+				"role" : "flags"
+			}
+		]
+	},
 	"artifacts" : 
 	[
 		{
-			"path" : "test/examples_test/11_module_test/ex_11_tests.exe"
-		},
-		{
-			"path" : "test/examples_test/11_module_test/ex_11_tests.pdb"
+			"path" : "src/examples/11_module/03_memory_leak/ex_11_03_library.lib"
 		}
 	],
 	"backtrace" : 1,
@@ -13,12 +20,12 @@
 	{
 		"commands" : 
 		[
-			"add_executable",
+			"add_library",
 			"include_directories"
 		],
 		"files" : 
 		[
-			"test/examples_test/11_module_test/CMakeLists.txt",
+			"src/examples/11_module/03_memory_leak/CMakeLists.txt",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
@@ -284,68 +291,13 @@
 			]
 		}
 	],
-	"id" : "ex_11_tests::@b17cab5059280372289d",
-	"link" : 
-	{
-		"commandFragments" : 
-		[
-			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "ex_11_01_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_02_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_03_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_04_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_05_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_06_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_07_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_08_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "ex_11_09_library.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
-				"role" : "libraries"
-			}
-		],
-		"language" : "CXX"
-	},
-	"name" : "ex_11_tests",
-	"nameOnDisk" : "ex_11_tests.exe",
+	"id" : "ex_11_03_library::@2bde47d0071f36c491ae",
+	"name" : "ex_11_03_library",
+	"nameOnDisk" : "ex_11_03_library.lib",
 	"paths" : 
 	{
-		"build" : "test/examples_test/11_module_test",
-		"source" : "test/examples_test/11_module_test"
+		"build" : "src/examples/11_module/03_memory_leak",
+		"source" : "src/examples/11_module/03_memory_leak"
 	},
 	"sourceGroups" : 
 	[
@@ -355,6 +307,13 @@
 			[
 				0
 			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1
+			]
 		}
 	],
 	"sources" : 
@@ -362,9 +321,14 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "test/examples_test/11_module_test/11_module_tests.cpp",
+			"path" : "src/examples/11_module/03_memory_leak/memory_leak.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/examples/11_module/03_memory_leak/memory_leak.h",
+			"sourceGroupIndex" : 1
 		}
 	],
-	"type" : "EXECUTABLE"
+	"type" : "STATIC_LIBRARY"
 }

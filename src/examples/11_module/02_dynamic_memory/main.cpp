@@ -4,7 +4,7 @@ using std::cout;
 int main() 
 {
 
-	int* ptr_num = new int(5); //declare adn acquire new memroy(heap)
+	int* ptr_num = new int(5); //declare and acquire new memroy(heap)
 
 	cout << &ptr_num << "\n";//displays address where ptr_num is stored
 	cout << ptr_num <<  "\n"; //address where new_int(5) is stored
