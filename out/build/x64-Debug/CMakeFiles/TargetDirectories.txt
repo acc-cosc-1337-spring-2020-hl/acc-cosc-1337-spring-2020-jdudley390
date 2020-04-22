@@ -7,11 +7,11 @@ C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x6
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/CMakeFiles/rebuild_cache.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/CMakeFiles/test.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/CMakeFiles/edit_cache.dir
-C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/05_assign/CMakeFiles/cw_05_library.dir
-C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/05_assign/CMakeFiles/edit_cache.dir
-C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/05_assign/CMakeFiles/cw_05_exe.dir
-C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/05_assign/CMakeFiles/rebuild_cache.dir
-C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/05_assign/CMakeFiles/test.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/11_assign/CMakeFiles/cw_11_library.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/11_assign/CMakeFiles/cw_11_exe.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/11_assign/CMakeFiles/rebuild_cache.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/11_assign/CMakeFiles/test.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/classwork/11_assign/CMakeFiles/edit_cache.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/examples/CMakeFiles/rebuild_cache.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/examples/CMakeFiles/test.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/src/examples/CMakeFiles/edit_cache.dir
@@ -77,6 +77,10 @@ C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x6
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/CMakeFiles/rebuild_cache.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/CMakeFiles/test.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/CMakeFiles/edit_cache.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/11_assign_test/CMakeFiles/cw_11_tests.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/11_assign_test/CMakeFiles/rebuild_cache.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/11_assign_test/CMakeFiles/test.dir
+C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/11_assign_test/CMakeFiles/edit_cache.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/examples_test/CMakeFiles/rebuild_cache.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/examples_test/CMakeFiles/test.dir
 C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/examples_test/CMakeFiles/edit_cache.dir
