@@ -4,10 +4,8 @@
 
 int main() 
 {
-
-	use_vector();
-	//int* num = new int(5);//use in code
-	//delete num;
-	//num = nullptr; //deallocate memory
+	Vector v1(3);
+	Vector v2(3);
+	v2 = v1;
 	return 0;
 }

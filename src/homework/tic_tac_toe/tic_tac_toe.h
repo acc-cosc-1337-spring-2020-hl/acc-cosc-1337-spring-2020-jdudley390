@@ -20,9 +20,9 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, const TicTacToe& t);
 	friend std::istream& operator>>(std::istream& in, TicTacToe& t);
 protected: 
-	virtual bool check_column_win();
-	virtual bool check_row_win();
-	virtual bool check_diagnol_win();
+	virtual bool check_column_win() = 0;
+	virtual bool check_row_win() = 0;
+	virtual bool check_diagnol_win() = 0;
 	string player;
 	std::vector<string> pegs;
 	
