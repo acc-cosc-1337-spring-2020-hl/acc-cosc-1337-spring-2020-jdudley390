@@ -10,7 +10,6 @@ int main()
 {
 	std::unique_ptr <TicTacToe_Manager> manager = std::make_unique<TicTacToe_Manager>();
 	string cont;
-	std::vector<std::unique_ptr<TicTacToe>> games;
 
 	do
 	{
@@ -18,8 +17,6 @@ int main()
 		std::unique_ptr<TicTacToe> gameA;
 		cout << "\nTictactoe 3 or 4?";
 		cin >> game_type;
-		TicTacToe3 game3;
-		TicTacToe4 game4;
 
 		if (game_type == 3)
 		{
@@ -65,16 +62,16 @@ int main()
 
 		} while (!gameA->game_over());
 
-		manager->save_game(gameA);
-
 		cout << "\nWinner: " << gameA->get_winner() << "\n";
 
+		manager->save_game(gameA);
+				
 		cout << "Enter Y to play again: ";
 		cin >> cont;
 
 	} while (cont == "Y");
 
-	cout << manager;
+	cout << *manager;
 
 	return 0;
 }
