@@ -8,7 +8,7 @@ class Vector
 public:
 	Vector(size_t sz);
 	Vector(const Vector& v); //copy constructor RULE OF 3
-	Vector& operator=(const Vector& v); //copy assignment RULE OF 3
+	Vector& operator=(const Vector& v); //copy assignment operator RULE OF 3
 	size_t Size() const { return size; }
 	int& operator[](int i) { return nums[i]; }//overlaod the subscript/index operator []
 	int& operator[](int i) const { return nums[i]; }
