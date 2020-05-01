@@ -105,6 +105,11 @@ string TicTacToe::get_player() const
 	return player;
 }
 
+vector<string> TicTacToe::get_pegs() const
+{
+	return pegs;
+}
+
 // Error Class
 string Error::get_message()
 {

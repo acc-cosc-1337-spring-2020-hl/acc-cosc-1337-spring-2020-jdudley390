@@ -13,12 +13,13 @@ public:
 	TicTacToe() = default;
 	TicTacToe::TicTacToe(int size) : pegs(size * size, " ") {};
 	TicTacToe(std::vector<string> p, string win);
-	const std::_Vector_val<std::string>& get_pegs();
+	
 	bool game_over();
 	void start_game(string first_player);
 	void mark_board(int position);
 	string get_player() const;
 	string get_winner() { return winner; };
+	vector<string> get_pegs() const;
 	friend std::ostream& operator<<(std::ostream& out, const TicTacToe& t);
 	friend std::istream& operator>>(std::istream& in, TicTacToe& t);
 protected: 

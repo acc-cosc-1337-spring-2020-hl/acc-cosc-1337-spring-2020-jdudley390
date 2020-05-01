@@ -8,8 +8,15 @@ using std::cout; using std::cin; using std::string;
 
 int main()
 {
-	std::unique_ptr <TicTacToe_Manager> manager = std::make_unique<TicTacToe_Manager>();
-	string cont;
+	int x = 0;
+	int o = 0;
+	int tie = 0;
+	TicTacToeData data;
+	TicTacToe_Manager manager = TicTacToe_Manager(data);
+	std::unique_ptr<TicTacToe> game;
+	int gameType = 0;
+	string player;
+	string cont = "Y";
 
 	do
 	{
@@ -64,14 +71,14 @@ int main()
 
 		cout << "\nWinner: " << gameA->get_winner() << "\n";
 
-		manager->save_game(gameA);
+		manager.save_game(gameA);
 				
 		cout << "Enter Y to play again: ";
 		cin >> cont;
 
 	} while (cont == "Y");
 
-	cout << *manager;
+	cout << manager;
 
 	return 0;
 }
