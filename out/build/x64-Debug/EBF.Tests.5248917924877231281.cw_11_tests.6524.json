@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "cw_11_tests",
+    "Command": "C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/11_assign_test/cw_11_tests.exe",
+    "Arguments": [
+      "-s"
+    ],
+    "WorkingDirectory": "C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/out/build/x64-Debug/test/classwork_test/11_assign_test",
+    "ProjectFile": "C:/Users/Jonathan/source/repos/acc-cosc-1337-spring-2020-jdudley390/test/classwork_test/11_assign_test/CMakeLists.txt",
+    "LineNumber": 3,
+    "Environment": {},
+    "ExpectsFailure": false,
+    "PassRegularExpression": null,
+    "FailRegularExpression": null,
+    "TargetName": "cw_11_tests.exe (test\\classwork_test\\11_assign_test\\cw_11_tests.exe)",
+    "TimeoutInMs": -1
+  }
+]
