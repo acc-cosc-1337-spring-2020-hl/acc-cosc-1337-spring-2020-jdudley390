@@ -10,23 +10,24 @@
 
 using std::vector;
 
-class TicTacToe_Manager{
+class TicTacToe_Manager {
 public:
 	TicTacToe_Manager() = default;
 	TicTacToe_Manager(TicTacToeData & d);
 	~TicTacToe_Manager();
 	void save_game(std::unique_ptr<TicTacToe>& b);
 	friend std::ostream& operator<<(std::ostream& out, const TicTacToe_Manager& c);
-private: 
+private:
 	TicTacToeData data;
 	vector<std::unique_ptr<TicTacToe>> games;
 	void update_winner_count(string winner);
-	int x_win;
-	int o_win;
-	int ties;
-
-
+	int x_win{ 0 };
+	int o_win{ 0 };
+	int ties{ 0 };
 };
+
+
+
 
 
 

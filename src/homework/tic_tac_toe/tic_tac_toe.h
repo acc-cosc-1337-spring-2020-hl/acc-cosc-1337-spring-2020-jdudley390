@@ -11,8 +11,8 @@ class TicTacToe
 {
 public:
 	TicTacToe() = default;
-	TicTacToe::TicTacToe(int size) : pegs(size * size, " ") {};
-	TicTacToe(std::vector<string> p, string win);
+	TicTacToe(int size) : pegs(size * size, " ") {};
+	TicTacToe(std::vector<string> p, string win) : pegs{ p }, winner{ win } {}
 	
 	bool game_over();
 	void start_game(string first_player);
