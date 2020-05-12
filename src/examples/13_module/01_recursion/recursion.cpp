@@ -10,8 +10,9 @@ void display(int n)
 		return;
 	}
 
-	std::cout << "hello\n";
+	std::cout << "load stack\n";
 	display(n-1);
+	std::cout << "unload from stack \n";
 }
 
 int factorial(int n) 
@@ -25,7 +26,8 @@ int factorial(int n)
 	}
 
 	std::cout << "load stack"<<n<<' \n';
-	f = n * factorial(n - 1);
+	f = n * factorial(n - 1); //it will stop calling factorial after base and will just multiply by each
+							  //number on the unwind
 	std::cout << "unload stack \n";
 	return f;
 }

@@ -1,166 +1,49 @@
 #include "vector.h"
 #include<iostream>
-/*
-Allocated dynamic memory for an array of sz(size) elements
-Initialized all the array elements to 0
+/*This top constructor creates the initializer for elements on stack*/
+/*Vector::Vector(size_t sz)
+	:size{sz} //constructor that passes parameter argument ("sz") size variable*/
 
-*/
-
+/* Initialize num to size dynamic / heap array
+Initialize each element to 0
+When creating array addess will still hold old data
+from other instances
+Initilize to 0 with this code*/
 Vector::Vector(size_t sz) 
-	:size{ sz }, nums{ new int[sz] } //construct initializer
+	:size{ sz }, nums{new int[sz]} //nums{new int[sz]} creates initialization for items on heap
 {
-	std::cout << "allocate memory\n";
-	for (size_t i = 0; i < sz; ++i)
+	for (size_t i = 0; i < sz; ++i) //loop through the array
 	{
-		nums[i] = 0;
+		nums[i] = 0; //initializes each element to 0
 	}
 }
-/*
-Set the new class size to the right-hand operand array size
-Allocated a dynamic array of size element
-Initialized all the elements to the value o fhte right hand operand(class)
-*/
-
-Vector::Vector(const Vector& v)
-	: size{v.size}, nums{new int[v.size]}
+/*copy v.size into new class
+Create new dynamic memory array
+Initialize array elements to the v.nums array values*/
+Vector::Vector(const Vector & v) //copy constructor
+	:size{v.size}, nums{new int[v.size]} //copied size to new class. it steals the size from v1 
 {
+	//copy the array elements from v1 into v2
 	for (size_t i = 0; i < size; ++i)
 	{
-		nums[i] = v[i];
+		nums/*of*/[i] = v[i];
 	}
 }
 /*
-Allocated temporarty memory of right-hand operand size
-Initialized all temp elements to right-hand operand elements' value
-Deallocated created memory of this class
-Copied temporary memory to this class (nums)
-Set size to right-hand operand size
-retur a dereferenced instance of this class
+Release dynamic memory
+Deallocate memory
 */
-Vector&  Vector::operator=(const Vector& v) 
+Vector::~Vector()
 {
-
-	if (this == &v) //prevent self copy
-	{
-		return *this;
-	}
-
-	if (v.size <= space) //enough space in memory no need to create new one
-	{
-		for (size_t i = 0; i < v.size; ++i)
-		{
-			nums[i] = v.nums[i];
-
-		}
-		size = v.size;
-
-		return *this;
-	}
-	int* temp = new int[v.size];
-
-	for (size_t i = 0; i < v.size; i++)
-	{
-		temp[i] = v[i];
-		
-	}
-	delete[] nums;
-
-	nums = temp;
-	size = v.size;
-
-	return *this;
+	std::cout << "\nrelease memory\n";
+	delete[] nums; //for arrays must use subscript operator/[] then the name of the pointer which was int* nums
 }
-/*
-Compare space to new allocation. If allocation < size return???
-Create a temporary dynamic memory 
-Copy dynamic memory of new allocation size
-Copy all current elements to temporary array
-Delete current nums
-Set nums to new temporary dynamic array
-Space to new allocation
-*/
-void Vector::Reserve(size_t new_allocation)
+//free function
+//==================================================
+void use_vector()
 {
-	if (new_allocation <= space)
-	{
-		return;
-	}
-
-	int* temp = new int[new_allocation];
-
-	for (size_t i = 0; i < size; ++i)
-	{
-		temp[i] = nums[i];
-	}
-
-	delete[] nums;
-	nums = temp;
-
-	space = new_allocation;
-}
-/*
-
-*/
-void Vector::Resize(size_t new_size)
-{
-	Reserve(new_size);
-
-	for (size_t i = size ; i < new_size; ++i)
-	{
-		nums[i] = 0;
-	}
-
-}
-void Vector::Push_Back(int value)
-{
-	if (space == 0)
-	{
-		Reserve(RESERVE_DEFAULT_SIZE);
-
-	}
-	else if (size = space)
-	{
-		Reserve(space * RESERVE_SIZE_MULTIPLIER);
-	}
-	nums[size] = value;
-	++size;
-}
-
-Vector::~Vector()//creates destructotor part of vector class
-{
-	std::cout << "release memory\n\n";
-	delete[] nums; //deletes arrays
-}
-
-void use_vector() 
-{
-	Vector* v = new Vector(3); //using the pointer means you have ot delete  vector manually
-	delete v;
-	//Vector v(3) <<<<<C++ automatically deleting memory instead of manually
-}
-
-Vector get_vector()
-{
-	Vector v = Vector(3);
-	return v;
-}
-/*use move source pointer
-point move source pointer to nothing
-*/
-Vector::Vector(Vector&& v)
-	: size{ v.size }, nums{ v.nums }
-{
-	v.size = 0;
-	v.nums = nullptr;
-}
-//v =
-Vector& Vector::operator=(Vector&& v)
-{
-	delete[] nums;
-	nums = v.nums;
-	size = v.size;
-	v.nums = nullptr;
-	v.size = 0;
-
-	return *this;
+	//Vector v1(3); //stack variable
+	Vector* v1 = new Vector(3); //creates instance of vector on heap/dynamic memory
+								//"*" always means pointer must manually deallocate memory
+	delete v1; //don't use "[]"/subscript operator only creating one instance of vector
 }
